@@ -1,0 +1,189 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tutorial: Importing and Processing a Syscal Pro dataset &#8212; REDA 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="sEIT import and processing" href="seit.html" />
+    <link rel="prev" title="Welcome to the REDA documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-importing-and-processing-a-syscal-pro-dataset">
+<h1>Tutorial: Importing and Processing a Syscal Pro dataset<a class="headerlink" href="#tutorial-importing-and-processing-a-syscal-pro-dataset" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="steps-for-the-data-processing">
+<h2>Steps for the data processing<a class="headerlink" href="#steps-for-the-data-processing" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>import data</li>
+<li>assess raw data<ul>
+<li>visualize raw data<ul>
+<li>histograms</li>
+<li>rawdata plots</li>
+<li>scatter plots</li>
+<li>normal-reciprocal plots (hist, scatter)</li>
+</ul>
+</li>
+<li>remove (“filter”) outliers by using one or more criteria</li>
+</ul>
+</li>
+<li>store filtered data for further processing</li>
+<li>invert data<ul>
+<li>determine error parameters</li>
+<li>run a robust inversion</li>
+<li>anisotropic regularization</li>
+<li>starting model</li>
+<li>for complex (IP) data:<ul>
+<li>complex inversion</li>
+<li>FPI inversion</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>assess inversion results<ul>
+<li>visualize results</li>
+<li>check final RMS</li>
+<li>check RMS and lambda evolution</li>
+<li>check results for outliers</li>
+<li>check individual residuals</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="importing-data">
+<h2>Importing data<a class="headerlink" href="#importing-data" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edf.containers.ERT</span> <span class="k">as</span> <span class="nn">edfERT</span>
+
+<span class="n">ert</span> <span class="o">=</span> <span class="n">edfERT</span><span class="o">.</span><span class="n">ERT</span><span class="p">()</span>
+<span class="n">ert</span><span class="o">.</span><span class="n">import_syscal_dat</span><span class="p">(</span><span class="s1">&#39;data/ML_20140124_03n.txt&#39;</span><span class="p">)</span>
+<span class="n">ert</span><span class="o">.</span><span class="n">import_syscal_dat</span><span class="p">(</span><span class="s1">&#39;data/ML_20140124_03r.txt&#39;</span><span class="p">,</span> <span class="n">reciprocals</span><span class="o">=</span><span class="mi">48</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="geometrical-factors">
+<h2>Geometrical factors<a class="headerlink" href="#geometrical-factors" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">seit</span> <span class="o">=</span> <span class="n">sEIT</span><span class="o">.</span><span class="n">sEIT</span><span class="p">()</span>
+<span class="n">seit</span><span class="o">.</span><span class="n">import_eit40</span><span class="p">(</span>
+    <span class="s1">&#39;time1/bnk_raps_20130408_1715_03_einzel.mat&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Misc/configs.dat&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;Misc/corr_fac_avg_nor.dat&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;Misc/corr_fac_avg_rec.dat&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exporting-to-crtomo-manager">
+<h2>Exporting to CRTomo manager<a class="headerlink" href="#exporting-to-crtomo-manager" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">crtomo.tdManager</span> <span class="k">as</span> <span class="nn">tdMan</span>
+<span class="n">man</span> <span class="o">=</span> <span class="n">tdMan</span><span class="o">.</span><span class="n">tdMan</span><span class="p">(</span>
+    <span class="n">elem_file</span><span class="o">=</span><span class="s1">&#39;data/GRID/grid/elem.dat&#39;</span><span class="p">,</span>
+    <span class="n">elec_file</span><span class="o">=</span><span class="s1">&#39;data/GRID/grid/elec.dat&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">man</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">add_to_configs</span><span class="p">(</span><span class="n">ert</span><span class="o">.</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">]])</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="n">man</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">add_measurements</span><span class="p">(</span><span class="n">ert</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;rho_a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="n">man</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">add_measurements</span><span class="p">(</span><span class="n">ert</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">man</span><span class="o">.</span><span class="n">register_measurements</span><span class="p">(</span><span class="n">mag</span><span class="o">=</span><span class="n">mid</span><span class="p">)</span>
+<span class="n">man</span><span class="o">.</span><span class="n">crtomo_cfg</span><span class="p">[</span><span class="s1">&#39;dc_inv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;T&#39;</span>
+<span class="n">man</span><span class="o">.</span><span class="n">crtomo_cfg</span><span class="p">[</span><span class="s1">&#39;robust_inv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;F&#39;</span>
+<span class="n">man</span><span class="o">.</span><span class="n">crtomo_cfg</span><span class="p">[</span><span class="s1">&#39;mag_rel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">man</span><span class="o">.</span><span class="n">crtomo_cfg</span><span class="p">[</span><span class="s1">&#39;mag_abs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">man</span><span class="o">.</span><span class="n">save_to_tomodir</span><span class="p">(</span><span class="s1">&#39;inversion1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial: Importing and Processing a Syscal Pro dataset</a><ul>
+<li><a class="reference internal" href="#steps-for-the-data-processing">Steps for the data processing</a></li>
+<li><a class="reference internal" href="#importing-data">Importing data</a></li>
+<li><a class="reference internal" href="#geometrical-factors">Geometrical factors</a></li>
+<li><a class="reference internal" href="#exporting-to-crtomo-manager">Exporting to CRTomo manager</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to the REDA documentation!</a></li>
+      <li>Next: <a href="seit.html" title="next chapter">sEIT import and processing</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/syscal.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Weigand, M. and Wagner F.M..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/syscal.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
