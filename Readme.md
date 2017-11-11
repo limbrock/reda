@@ -5,7 +5,9 @@ How to update the documentation
 -------------------------------
 
 * switch to master branch and build documentation in *doc/*
-* switch to gh-pages branch and run::
+* switch to gh-pages branch and run
+
+::
 
 	rsync -avz doc/_build/html/ documentation/
 	git add documentation
