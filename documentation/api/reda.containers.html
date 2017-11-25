@@ -122,7 +122,7 @@ Construct pandas data frame BERT’s unified data format (<a href="#id1"><span c
 
 <dl class="method">
 <dt id="reda.containers.ERT.Importers.import_pygimli">
-<code class="descname">import_pygimli</code><span class="sig-paren">(</span><em>*args</em>, <em>**kargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Importers.import_pygimli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Importers.import_pygimli" title="Permalink to this definition">¶</a></dt>
+<code class="descname">import_pygimli</code><span class="sig-paren">(</span><em>filename</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Importers.import_pygimli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Importers.import_pygimli" title="Permalink to this definition">¶</a></dt>
 <dd><p>BERT .ohm file import
 Construct pandas data frame BERT’s unified data format (<a href="#id3"><span class="problematic" id="id4">*</span></a>.ohm).</p>
 <dl class="docutils">
@@ -196,7 +196,8 @@ return None</dd>
 <dl class="class">
 <dt id="reda.containers.ERT.LogDataChanges">
 <em class="property">class </em><code class="descclassname">reda.containers.ERT.</code><code class="descname">LogDataChanges</code><span class="sig-paren">(</span><em>container</em>, <em>filter_action='default'</em>, <em>filter_query=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#LogDataChanges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.LogDataChanges" title="Permalink to this definition">¶</a></dt>
-<dd><p>Context manager that observes the DataFrame of a data container for
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Context manager that observes the DataFrame of a data container for
 changes in the number of rows.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reda.testing.containers</span> <span class="k">import</span> <span class="n">ERTContainer</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reda.containers.ERT</span> <span class="k">import</span> <span class="n">LogDataChanges</span>
