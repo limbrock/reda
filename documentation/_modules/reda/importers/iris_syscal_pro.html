@@ -1,0 +1,188 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>reda.importers.iris_syscal_pro &#8212; REDA 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for reda.importers.iris_syscal_pro</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;IRIS Instruments Syscal Pro data importer</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">StringIO</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="import_txt"><a class="viewcode-back" href="../../../api/reda.importers.html#reda.importers.iris_syscal_pro.import_txt">[docs]</a><span class="k">def</span> <span class="nf">import_txt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Import Syscal measurements from a text file, exported as &#39;Spreadsheet&#39;.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: string</span>
+<span class="sd">        input filename</span>
+<span class="sd">    x0: float</span>
+<span class="sd">        position of first electrode. If not given, then use the smallest</span>
+<span class="sd">        x-position in the data as the first electrode.</span>
+<span class="sd">    spacing: float</span>
+<span class="sd">        electrode spacing. This is important if not all electrodes are used in</span>
+<span class="sd">        a given measurement setup. If not given, then the smallest distance</span>
+<span class="sd">        between electrodes is assumed to be the electrode spacing. Naturally,</span>
+<span class="sd">        this requires measurements (or injections) with subsequent electrodes.</span>
+<span class="sd">    reciprocals: int, optional</span>
+<span class="sd">        if provided, then assume that this is a reciprocal measurements where</span>
+<span class="sd">        only the electrode cables were switched. The provided number N is</span>
+<span class="sd">        treated as the maximum electrode number, and denotations are renamed</span>
+<span class="sd">        according to the equation :math:`X_n = N - (X_a - 1)`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data: :class:`pandas.DataFrame`</span>
+<span class="sd">        Contains the measurement data</span>
+<span class="sd">    electrodes: :class:`pandas.DataFrame`</span>
+<span class="sd">        Contains electrode positions (None at the moment)</span>
+<span class="sd">    topography: None</span>
+<span class="sd">        No topography information is contained in the text files, so we always</span>
+<span class="sd">        return None</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    * TODO: we could try to infer electrode spacing from the file itself</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># read in text file into a buffer</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">fid</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">strings_to_replace</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Mixed / non conventional&#39;</span><span class="p">:</span> <span class="s1">&#39;Mixed/non-conventional&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Date Time AM-PM&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">strings_to_replace</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">strings_to_replace</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+    <span class="n">buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># read data file</span>
+    <span class="n">data_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="n">buffer</span><span class="p">,</span>
+        <span class="c1"># sep=&#39;\t&#39;,</span>
+        <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s1">&#39;x0&#39;</span><span class="p">,</span>
+        <span class="n">data_raw</span><span class="p">[[</span><span class="s1">&#39;Spa.1&#39;</span><span class="p">,</span> <span class="s1">&#39;Spa.2&#39;</span><span class="p">,</span> <span class="s1">&#39;Spa.3&#39;</span><span class="p">,</span> <span class="s1">&#39;Spa.4&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">electrode_spacing</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spacing&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># try to determine from the data itself</span>
+    <span class="k">if</span> <span class="n">electrode_spacing</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">electrode_positions</span> <span class="o">=</span> <span class="n">data_raw</span><span class="p">[</span>
+            <span class="p">[</span><span class="s1">&#39;Spa.1&#39;</span><span class="p">,</span> <span class="s1">&#39;Spa.2&#39;</span><span class="p">,</span> <span class="s1">&#39;Spa.3&#39;</span><span class="p">,</span> <span class="s1">&#39;Spa.4&#39;</span><span class="p">]</span>
+        <span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">electrode_spacing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span>
+            <span class="n">electrode_positions</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">electrode_positions</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+    <span class="c1"># clean up column names</span>
+    <span class="n">data_raw</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data_raw</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;Spa.1&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">electrode_spacing</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;Spa.2&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">electrode_spacing</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;M&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;Spa.3&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">electrode_spacing</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;Spa.4&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">electrode_spacing</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># convert to integers</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">((</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">)):</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1"># [mV] / [mA]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;Vp&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;In&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Vmn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;Vp&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Iab&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_raw</span><span class="p">[</span><span class="s1">&#39;In&#39;</span><span class="p">]</span>
+
+    <span class="c1"># rename electrode denotations</span>
+    <span class="n">rec_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;reciprocals&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rec_max</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;renumbering electrode numbers&#39;</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">rec_max</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">]]</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Weigand, M. and Wagner F.M..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

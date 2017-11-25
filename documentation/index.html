@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorial: Importing and Processing a Syscal Pro dataset" href="syscal.html" />
+    <link rel="next" title="Data Containers" href="data_containers.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -42,9 +42,33 @@
             
   <div class="section" id="welcome-to-the-reda-documentation">
 <h1>Welcome to the REDA documentation!<a class="headerlink" href="#welcome-to-the-reda-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
+<p>REDA is a scientific Python library for reproducible geoelectrical data
+analysis. It aims to provide a unified interface for common and advanced data
+processing steps while bridging the gap between a multitude of geoelectric
+measurement devices and inversion codes used across the geophysical community.
+It offers functionality to import, analyze, process, visualize, and export
+geoelectrical data with particular emphasis on time-lapse functionality and
+reproducibility. The latter is realized in the form of a logging system, which
+keeps track of each individual processing step applied to particular data set
+in a human-readable journal. REDA is platform compatible, tested and
+open-source under the permissive MIT license. Any contributions from the
+community are highly welcome.  Contents:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">REDA is a work in progress. Please get in touch if you are interested in
+using REDA for your work and have encountered any problems.</p>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="data_containers.html">Data Containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_containers.html#required-data-columns">Required data columns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="importers.html">Data Importers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="importers.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="importers.html#internal-structure-for-developers">Internal structure (for developers)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="syscal.html">Tutorial: Importing and Processing a Syscal Pro dataset</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="syscal.html#steps-for-the-data-processing">Steps for the data processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="syscal.html#importing-data">Importing data</a></li>
@@ -59,6 +83,10 @@
 <li class="toctree-l2"><a class="reference internal" href="seit.html#filtering">Filtering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="seit.html#plotting-histograms">Plotting histograms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="seit.html#exporting">Exporting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">reda</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/reda.html">reda package</a></li>
 </ul>
 </li>
 </ul>
@@ -88,7 +116,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="syscal.html" title="next chapter">Tutorial: Importing and Processing a Syscal Pro dataset</a></li>
+      <li>Next: <a href="data_containers.html" title="next chapter">Data Containers</a></li>
   </ul></li>
 </ul>
 </div>
@@ -117,7 +145,7 @@
       &copy;2017, Weigand, M. and Wagner F.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

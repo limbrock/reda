@@ -1,0 +1,149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>reda.main.units &#8212; REDA 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for reda.main.units</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">columns in the containers are usually named in a simplified way to facilitate</span>
+<span class="sd">working with them. However, as soon as we want to export data, or plot data,</span>
+<span class="sd">meaningful and physically correct identifiers are required. This file defines</span>
+<span class="sd">the corresponding relations.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">rel</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;|Z|_[Ohm]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$|Z|~[\Omega]$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\Ohm$&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;rho_a&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;rhoa_[Ohm m]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\rho_a~[\Omega m]$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\Ohm m$&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Iab&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Iab_[mA]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$I_</span><span class="si">{ab}</span><span class="s1">~[mA]$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;mA&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Vmn&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Vmn_[mV]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$U_</span><span class="si">{mn}</span><span class="s1">~[mV]$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;mV&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;log_rho&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;log_rho_[Ohm m]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(|\rho|~[\Omega\mbox</span><span class="si">{m}</span><span class="s1">])$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\Ohm m&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;rho&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;rho_[Ohm m]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$|\rho|~[\Omega\mbox</span><span class="si">{m}</span><span class="s1">]$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\Ohm m&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;phi&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;phi_[mrad]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\phi~[\mbox</span><span class="si">{mrad}</span><span class="s1">]$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;mrad&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;log_real&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;log_real_[S/m]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;$\log_</span><span class="si">{10}</span><span class="s2">(\sigma&#39;~[\mbox{S/m}])$&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;S/m&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;log_imag&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;log_imag_[S/m]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label_latex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;$\log_</span><span class="si">{10}</span><span class="s2">(|\sigma&#39;&#39;|~[\mbox{S/m}])$&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;S/m&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="get_label"><a class="viewcode-back" href="../../../api/reda.main.html#reda.main.units.get_label">[docs]</a><span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convenience function: return the label (latex version) of a given key,</span>
+<span class="sd">    if available. Otherwise, return the key itself.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">rel</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rel</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;label_latex&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">key</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Weigand, M. and Wagner F.M..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

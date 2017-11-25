@@ -1,0 +1,397 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>reda.importers package &#8212; REDA 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="reda.main package" href="reda.main.html" />
+    <link rel="prev" title="reda.exporters package" href="reda.exporters.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reda-importers-package">
+<h1>reda.importers package<a class="headerlink" href="#reda-importers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-reda.importers.bert">
+<span id="reda-importers-bert-module"></span><h2>reda.importers.bert module<a class="headerlink" href="#module-reda.importers.bert" title="Permalink to this headline">¶</a></h2>
+<p>Importer to load the unified data format used in pyGIMLi, BERT, and
+dc2dinvres.</p>
+<dl class="function">
+<dt id="reda.importers.bert.import_ohm">
+<code class="descclassname">reda.importers.bert.</code><code class="descname">import_ohm</code><span class="sig-paren">(</span><em>filename</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/bert.html#import_ohm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.bert.import_ohm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct pandas data frame BERT’s unified data format (<a href="#id1"><span class="problematic" id="id2">*</span></a>.ohm).</p>
+<dl class="docutils">
+<dt>filename: string</dt>
+<dd>File path to .ohm file</dd>
+<dt>verbose: bool, optional</dt>
+<dd>Enables extended debug output</dd>
+</dl>
+<dl class="docutils">
+<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+213.g412988e.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dd>The measurement data</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-reda.importers.eit160">
+<span id="reda-importers-eit160-module"></span><h2>reda.importers.eit160 module<a class="headerlink" href="#module-reda.importers.eit160" title="Permalink to this headline">¶</a></h2>
+<p>Work with result files from the EIT-40/160 tomograph (also called medusa).</p>
+<p>Data structure of .mat files:</p>
+<blockquote>
+<div>EMD(n).fm frequency
+EMD(n).Time point of time of this measurement
+EMD(n).ni number of the two excitation electrodes (not the channel number)
+EMD(n).nu number of the two potential electrodes (not the channel number)
+EMD(n).Zt3 array with the transfer impedances (repetition measurement)
+EMD(n).nni number of injection
+EMD(n).cni number of channels used to inject current
+EMD(n).cnu number of channels used to measure voltage
+EMD(n).Is3 injected current (A) (calibrated)
+EMD(n).II3 leakage current (A)
+EMD(n).Yg1 Admitance of first injection path
+EMD(n).Yg2 Admitance of second injection path
+EMD(n).As3 Voltages at shunt resistors (defined in .mcf files: NA1 - NA2)
+EMD(n).Zg3 Impedance between injection electrodes</div></blockquote>
+<p>Import pipeline:</p>
+<ul class="simple">
+<li>read single-potentials from .mat file</li>
+<li>read quadrupoles from separate file or provide numpy array</li>
+<li>compute mean of three impedance measurement repetitions (Z1-Z3) for each ABM</li>
+<li><dl class="first docutils">
+<dt>compute quadrupole impedance via superposition using</dt>
+<dd><ul class="first last">
+<li><ol class="first loweralpha">
+<li>averaged Z-values</li>
+</ol>
+</li>
+<li><ol class="first loweralpha" start="2">
+<li>the single repetitions Z1-Z3</li>
+</ol>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>(I think we don’t need the next step because of np.arctan2)
+- check for correct quadrant in phase values, correct if necessary (is this</p>
+<blockquote>
+<div>required if we use the arctan2 function?)</div></blockquote>
+<ul class="simple">
+<li>compute variance/standard deviation from the repetition values</li>
+<li>should we provide a time delta between the two measurements?</li>
+</ul>
+<dl class="function">
+<dt id="reda.importers.eit160.import_medusa_data">
+<code class="descclassname">reda.importers.eit160.</code><code class="descname">import_medusa_data</code><span class="sig-paren">(</span><em>mat_filename</em>, <em>configs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/eit160.html#import_medusa_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.eit160.import_medusa_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.eit160.read_mat_mnu0">
+<code class="descclassname">reda.importers.eit160.</code><code class="descname">read_mat_mnu0</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/eit160.html#read_mat_mnu0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.eit160.read_mat_mnu0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a .mat file with single potentials (A B M) into a pandas
+DataFrame</p>
+<p>Also export some variables of the md struct into a separate structure</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-reda.importers.eit40">
+<span id="reda-importers-eit40-module"></span><h2>reda.importers.eit40 module<a class="headerlink" href="#module-reda.importers.eit40" title="Permalink to this headline">¶</a></h2>
+<p>Work with result files from the EIT-40 tomograph (also called medusa).</p>
+<p>NOTE that the results for EIT40 and EIT160 are, at this time, slightly
+different.</p>
+<p>Data structure of .mat files:</p>
+<blockquote>
+<div>EMD(n).fm frequency
+EMD(n).Time point of time of this measurement
+EMD(n).ni number of the two excitation electrodes (not the channel number)
+EMD(n).nu number of the two potential electrodes (not the channel number)
+EMD(n).Zt3 array with the transfer impedances (repetition measurement)
+EMD(n).nni number of injection
+EMD(n).cni number of channels used to inject current
+EMD(n).cnu number of channels used to measure voltage
+EMD(n).Is3 injected current (A) (calibrated)
+EMD(n).II3 leakage current (A)
+EMD(n).Yg1 Admitance of first injection path
+EMD(n).Yg2 Admitance of second injection path
+EMD(n).As3 Voltages at shunt resistors (defined in .mcf files: NA1 - NA2)
+EMD(n).Zg3 Impedance between injection electrodes</div></blockquote>
+<p>Import pipeline:</p>
+<ul class="simple">
+<li>read single-potentials from .mat file</li>
+<li>read quadrupoles from separate file or provide numpy array</li>
+<li>compute mean of three impedance measurement repetitions (Z1-Z3) for each ABM</li>
+<li><dl class="first docutils">
+<dt>compute quadrupole impedance via superposition using</dt>
+<dd><ul class="first last">
+<li><ol class="first loweralpha">
+<li>averaged Z-values</li>
+</ol>
+</li>
+<li><ol class="first loweralpha" start="2">
+<li>the single repetitions Z1-Z3</li>
+</ol>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>(I think we don’t need the next step because of np.arctan2)
+- check for correct quadrant in phase values, correct if necessary (is this</p>
+<blockquote>
+<div>required if we use the arctan2 function?)</div></blockquote>
+<ul class="simple">
+<li>compute variance/standard deviation from the repetition values</li>
+<li>should we provide a time delta between the two measurements?</li>
+</ul>
+<dl class="function">
+<dt id="reda.importers.eit40.apply_correction_factors">
+<code class="descclassname">reda.importers.eit40.</code><code class="descname">apply_correction_factors</code><span class="sig-paren">(</span><em>df</em>, <em>correction_file</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/eit40.html#apply_correction_factors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.eit40.apply_correction_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply correction factors for a pseudo-2D measurement setup. See Weigand
+and Kemna, 2017, Biogeosciences, for detailed information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.eit40.import_medusa_data">
+<code class="descclassname">reda.importers.eit40.</code><code class="descname">import_medusa_data</code><span class="sig-paren">(</span><em>mat_filename</em>, <em>configs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/eit40.html#import_medusa_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.eit40.import_medusa_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-reda.importers.geotom">
+<span id="reda-importers-geotom-module"></span><h2>reda.importers.geotom module<a class="headerlink" href="#module-reda.importers.geotom" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="reda.importers.geotom.add_file">
+<code class="descclassname">reda.importers.geotom.</code><code class="descname">add_file</code><span class="sig-paren">(</span><em>filename</em>, <em>settings</em>, <em>container=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/geotom.html#add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.geotom.add_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>settings = {</dt>
+<dd>timestep: [int|datetime], timestep relating to this measurement</dd>
+</dl>
+<p>}
+container: ERT container to add dataset to</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-reda.importers.iris_syscal_pro">
+<span id="reda-importers-iris-syscal-pro-module"></span><h2>reda.importers.iris_syscal_pro module<a class="headerlink" href="#module-reda.importers.iris_syscal_pro" title="Permalink to this headline">¶</a></h2>
+<p>IRIS Instruments Syscal Pro data importer</p>
+<dl class="function">
+<dt id="reda.importers.iris_syscal_pro.import_txt">
+<code class="descclassname">reda.importers.iris_syscal_pro.</code><code class="descname">import_txt</code><span class="sig-paren">(</span><em>filename</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/iris_syscal_pro.html#import_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.iris_syscal_pro.import_txt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import Syscal measurements from a text file, exported as ‘Spreadsheet’.</p>
+<dl class="docutils">
+<dt>filename: string</dt>
+<dd>input filename</dd>
+<dt>x0: float</dt>
+<dd>position of first electrode. If not given, then use the smallest
+x-position in the data as the first electrode.</dd>
+<dt>spacing: float</dt>
+<dd>electrode spacing. This is important if not all electrodes are used in
+a given measurement setup. If not given, then the smallest distance
+between electrodes is assumed to be the electrode spacing. Naturally,
+this requires measurements (or injections) with subsequent electrodes.</dd>
+<dt>reciprocals: int, optional</dt>
+<dd>if provided, then assume that this is a reciprocal measurements where
+only the electrode cables were switched. The provided number N is
+treated as the maximum electrode number, and denotations are renamed
+according to the equation <span class="math">\(X_n = N - (X_a - 1)\)</span></dd>
+</dl>
+<dl class="docutils">
+<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+213.g412988e.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dd>Contains the measurement data</dd>
+<dt>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+213.g412988e.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dd>Contains electrode positions (None at the moment)</dd>
+<dt>topography: None</dt>
+<dd>No topography information is contained in the text files, so we always
+return None</dd>
+</dl>
+<ul class="simple">
+<li>TODO: we could try to infer electrode spacing from the file itself</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-reda.importers.radic_sip256c">
+<span id="reda-importers-radic-sip256c-module"></span><h2>reda.importers.radic_sip256c module<a class="headerlink" href="#module-reda.importers.radic_sip256c" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="reda.importers.radic_sip256c.compute_quadrupoles">
+<code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">compute_quadrupoles</code><span class="sig-paren">(</span><em>reading_configs</em>, <em>readings</em>, <em>settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#compute_quadrupoles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.compute_quadrupoles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.radic_sip256c.decide_on_quadpole">
+<code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">decide_on_quadpole</code><span class="sig-paren">(</span><em>config</em>, <em>settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#decide_on_quadpole"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.decide_on_quadpole" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.radic_sip256c.parse_radic_file">
+<code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">parse_radic_file</code><span class="sig-paren">(</span><em>filename</em>, <em>settings</em>, <em>selection_mode='after'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#parse_radic_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.parse_radic_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import one result file as produced by the SIP256c SIP measuring device
+(Radic Research)</p>
+<p>filename: input filename, usually with the ending “.RES”</p>
+<dl class="docutils">
+<dt>settings = {</dt>
+<dd><p class="first">‘filter_skip’: (integer) skip dipoles we are interested in
+‘quadrupole_mode’: [‘after’|’between’|’before’| ‘all’]</p>
+<blockquote class="last">
+<div>which dipoles to use from the file</div></blockquote>
+</dd>
+</dl>
+<p>}</p>
+<dl class="docutils">
+<dt>selection_mode: which voltage dipoles should be returned. Possible choices:</dt>
+<dd>“all”
+“before”
+“after”</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.radic_sip256c.parse_readic_header">
+<code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">parse_readic_header</code><span class="sig-paren">(</span><em>header_group</em>, <em>dipole_mode='all'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#parse_readic_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.parse_readic_header" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>dipole_mode: Which dipoles should be extracted</dt>
+<dd>“all”
+“before”
+“between”
+“after”</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.radic_sip256c.parse_reading">
+<code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">parse_reading</code><span class="sig-paren">(</span><em>reading_block</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#parse_reading"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.parse_reading" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.radic_sip256c.parse_remote_unit">
+<code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">parse_remote_unit</code><span class="sig-paren">(</span><em>ru_block</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#parse_remote_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.parse_remote_unit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="reda.importers.radic_sip256c.write_crmod_file">
+<code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">write_crmod_file</code><span class="sig-paren">(</span><em>sipdata</em>, <em>directory</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#write_crmod_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.write_crmod_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-reda.importers.res2dinv">
+<span id="reda-importers-res2dinv-module"></span><h2>reda.importers.res2dinv module<a class="headerlink" href="#module-reda.importers.res2dinv" title="Permalink to this headline">¶</a></h2>
+<p>Importer for RES2DINV files</p>
+<dl class="function">
+<dt id="reda.importers.res2dinv.add_dat_file">
+<code class="descclassname">reda.importers.res2dinv.</code><code class="descname">add_dat_file</code><span class="sig-paren">(</span><em>filename</em>, <em>settings</em>, <em>container=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/res2dinv.html#add_dat_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.res2dinv.add_dat_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a RES2DINV-style file produced by the ABEM export program.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-reda.importers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-reda.importers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">reda.importers package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-reda.importers.bert">reda.importers.bert module</a></li>
+<li><a class="reference internal" href="#module-reda.importers.eit160">reda.importers.eit160 module</a></li>
+<li><a class="reference internal" href="#module-reda.importers.eit40">reda.importers.eit40 module</a></li>
+<li><a class="reference internal" href="#module-reda.importers.geotom">reda.importers.geotom module</a></li>
+<li><a class="reference internal" href="#module-reda.importers.iris_syscal_pro">reda.importers.iris_syscal_pro module</a></li>
+<li><a class="reference internal" href="#module-reda.importers.radic_sip256c">reda.importers.radic_sip256c module</a></li>
+<li><a class="reference internal" href="#module-reda.importers.res2dinv">reda.importers.res2dinv module</a></li>
+<li><a class="reference internal" href="#module-reda.importers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">reda</a><ul>
+  <li><a href="reda.html">reda package</a><ul>
+      <li>Previous: <a href="reda.exporters.html" title="previous chapter">reda.exporters package</a></li>
+      <li>Next: <a href="reda.main.html" title="next chapter">reda.main package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/reda.importers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Weigand, M. and Wagner F.M..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/api/reda.importers.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

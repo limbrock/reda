@@ -1,0 +1,318 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>reda.plotters package &#8212; REDA 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="reda.testing package" href="reda.testing.html" />
+    <link rel="prev" title="reda.main package" href="reda.main.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reda-plotters-package">
+<h1>reda.plotters package<a class="headerlink" href="#reda-plotters-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-reda.plotters.histograms">
+<span id="reda-plotters-histograms-module"></span><h2>reda.plotters.histograms module<a class="headerlink" href="#module-reda.plotters.histograms" title="Permalink to this headline">¶</a></h2>
+<p>Histogram functions for raw data.</p>
+<dl class="function">
+<dt id="reda.plotters.histograms.plot_histograms">
+<code class="descclassname">reda.plotters.histograms.</code><code class="descname">plot_histograms</code><span class="sig-paren">(</span><em>ertobj</em>, <em>keys</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/histograms.html#plot_histograms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.histograms.plot_histograms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate histograms for one or more keys in the given container.</p>
+<dl class="docutils">
+<dt>ertobj: container instance or <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+213.g412988e.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dd>data object which contains the data.</dd>
+<dt>keys: list of strings</dt>
+<dd>which keys (column names) to plot</dd>
+<dt>merge: bool, optional</dt>
+<dd>if True, then generate only one figure with all key-plots as columns
+(default True)</dd>
+<dt>log10plot: bool, optional</dt>
+<dd>default: True</dd>
+</dl>
+<p>extra_dims: list, optional</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reda.plotters</span> <span class="k">import</span> <span class="n">plot_histograms</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reda.testing</span> <span class="k">import</span> <span class="n">ERTContainer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">figs_dict</span> <span class="o">=</span> <span class="n">plot_histograms</span><span class="p">(</span><span class="n">ERTContainer</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="n">merge</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">Generating histogram plot for key: R</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>figures: dict</dt>
+<dd>dictionary with the generated histogram figures</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.plotters.histograms.plot_histograms_extra_dims">
+<code class="descclassname">reda.plotters.histograms.</code><code class="descname">plot_histograms_extra_dims</code><span class="sig-paren">(</span><em>dataobj</em>, <em>keys</em>, <em>extra_dims</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/histograms.html#plot_histograms_extra_dims"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.histograms.plot_histograms_extra_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce histograms grouped by the extra dims.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-reda.plotters.plots2d">
+<span id="reda-plotters-plots2d-module"></span><h2>reda.plotters.plots2d module<a class="headerlink" href="#module-reda.plotters.plots2d" title="Permalink to this headline">¶</a></h2>
+<p>2D plots of raw data. This includes pseudosections.</p>
+<dl class="function">
+<dt id="reda.plotters.plots2d.plot_pseudodepths">
+<code class="descclassname">reda.plotters.plots2d.</code><code class="descname">plot_pseudodepths</code><span class="sig-paren">(</span><em>configs</em>, <em>nr_electrodes</em>, <em>spacing=1</em>, <em>grid=None</em>, <em>ctypes=None</em>, <em>dd_merge=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/plots2d.html#plot_pseudodepths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.plots2d.plot_pseudodepths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot pseudodepths for the measurements. If grid is given, then the
+actual electrode positions are used, and the parameter ‘spacing’ is
+ignored’</p>
+<dl class="docutils">
+<dt>spacing: float, optional</dt>
+<dd>assumed distance between electrodes. Default=1</dd>
+<dt>grid: crtomo.grid.crt_grid instance, optional</dt>
+<dd>grid instance. Used to infer real electrode positions</dd>
+<dt>ctypes: list of strings, optional</dt>
+<dd><p class="first">a list of configuration types that will be plotted. All
+configurations that can not be sorted into these types will not be
+plotted! Possible types:</p>
+<ul class="last simple">
+<li>dd</li>
+<li>schlumberger</li>
+</ul>
+</dd>
+<dt>dd_merge: bool, optional</dt>
+<dd>if True, merge all skips. Otherwise, generate individual plots for
+each skip</dd>
+</dl>
+<dl class="docutils">
+<dt>figs: matplotlib.figure.Figure instance or list of Figure instances</dt>
+<dd>if only one type was plotted, then the figure instance is return.
+Otherwise, return a list of figure instances.</dd>
+<dt>axes: axes object or list of axes ojects</dt>
+<dd>plot axes</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.plotters.plots2d.plot_pseudosection">
+<code class="descclassname">reda.plotters.plots2d.</code><code class="descname">plot_pseudosection</code><span class="sig-paren">(</span><em>df</em>, <em>plot_key</em>, <em>spacing=1</em>, <em>ctypes=None</em>, <em>dd_merge=False</em>, <em>cb=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/plots2d.html#plot_pseudosection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.plots2d.plot_pseudosection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a pseudosection plot for a given measurement</p>
+<dl class="docutils">
+<dt>df: dataframe</dt>
+<dd>measurement dataframe, one measurement frame (i.e., only one frequency
+etc)</dd>
+<dt>key:</dt>
+<dd>which key to colorcode</dd>
+<dt>spacing: float, optional</dt>
+<dd>assumed electrode spacing</dd>
+<dt>ctypes: list of strings</dt>
+<dd>which configurations to plot, default: dd</dd>
+<dt>dd_merge: bool, optional</dt>
+<dd>?</dd>
+<dt>cb: bool, optional</dt>
+<dd>?</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.plotters.plots2d.plot_rawdataplot">
+<code class="descclassname">reda.plotters.plots2d.</code><code class="descname">plot_rawdataplot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/plots2d.html#plot_rawdataplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.plots2d.plot_rawdataplot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-reda.plotters.pseudoplots">
+<span id="reda-plotters-pseudoplots-module"></span><h2>reda.plotters.pseudoplots module<a class="headerlink" href="#module-reda.plotters.pseudoplots" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="reda.plotters.pseudoplots.plot_ps_extra">
+<code class="descclassname">reda.plotters.pseudoplots.</code><code class="descname">plot_ps_extra</code><span class="sig-paren">(</span><em>dataobj</em>, <em>columns</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/pseudoplots.html#plot_ps_extra"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.pseudoplots.plot_ps_extra" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create grouped pseudoplots, either for all columns (one timestep) or
+multiples</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.plotters.pseudoplots.plot_pseudosection_type2">
+<code class="descclassname">reda.plotters.pseudoplots.</code><code class="descname">plot_pseudosection_type2</code><span class="sig-paren">(</span><em>dataobj</em>, <em>column</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/pseudoplots.html#plot_pseudosection_type2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.pseudoplots.plot_pseudosection_type2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a pseudosection plot of type 2.</p>
+<p>For a given measurement data set, create plots that graphically show
+the data in a 2D color plot. Hereby, x and y coordinates in the plot
+are determined by the current dipole (x-axis) and voltage dipole
+(y-axis) of the corresponding measurement configurations.</p>
+<p>This type of rawdata plot can plot any type of measurement
+configurations, i.e., it is not restricted to certain types of
+configurations such as Dipole-dipole or Wenner configurations. However,
+spatial inferences cannot be made from the plots for all configuration
+types.</p>
+<p>Coordinates are generated by separately sorting the dipoles
+(current/voltage) along the first electrode, and then subsequently
+sorting by the difference (skip) between both electrodes.</p>
+<p>Note that this type of raw data plot does not take into account the
+real electrode spacing of the measurement setup.</p>
+<p>Type 2 plots can show normal and reciprocal data at the same time.
+Hereby the upper left triangle of the plot area usually contains normal
+data, and the lower right triangle contains the corresponding
+reciprocal data. Therefore a quick assessment of normal-reciprocal
+differences can be made by visually comparing the symmetry on the 1:1
+line going from the lower left corner to the upper right corner.</p>
+<p>Note that this interpretation usually only holds for Dipole-Dipole data
+(and the related Wenner configurations).</p>
+<dl class="docutils">
+<dt>dataobj: ERT container|pandas.DataFrame</dt>
+<dd>Container or DataFrame with data to plot</dd>
+<dt>column: string</dt>
+<dd>Column key to plot</dd>
+<dt>ax: matplotlib.Axes object, optional</dt>
+<dd>axes object to plot to. If not provided, a new figure and axes
+object will be created and returned</dd>
+<dt>nocb: bool, optional</dt>
+<dd>if set to False, don’t plot the colorbar</dd>
+<dt>cblabel: string, optional</dt>
+<dd>label for the colorbar</dd>
+<dt>cbmin: float, optional</dt>
+<dd>colorbar minimum</dd>
+<dt>cbmax: float, optional</dt>
+<dd>colorbar maximum</dd>
+<dt>xlabel: string, optional</dt>
+<dd>xlabel for the plot</dd>
+<dt>ylabel: string, optional</dt>
+<dd>ylabel for the plot</dd>
+<dt>do_not_saturate: bool, optional</dt>
+<dd>if set to True, then values outside the colorbar range will not
+saturate with the respective limit colors. Instead, values lower
+than the CB are colored “cyan” and vaues above the CB limit are
+colored “red”</dd>
+<dt>log10: bool, optional</dt>
+<dd>if set to True, plot the log10 values of the provided data</dd>
+</dl>
+<dl class="docutils">
+<dt>fig:</dt>
+<dd>figure object</dd>
+<dt>ax:</dt>
+<dd>axes object</dd>
+<dt>cb:</dt>
+<dd>colorbar object</dd>
+</dl>
+<p>You can just supply a data vector to the plot function:</p>
+<p>Generate a simple type 2 plot:</p>
+<p>You can also supply axes to plot to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reda.testing.containers</span> <span class="k">import</span> <span class="n">ERTContainer_nr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.plotters.pseudoplots</span> <span class="k">as</span> <span class="nn">ps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">cb</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">plot_pseudosection_type2</span><span class="p">(</span><span class="n">ERTContainer_nr</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="reda.plotters.pseudoplots.test_get_unique_identifiers">
+<code class="descclassname">reda.plotters.pseudoplots.</code><code class="descname">test_get_unique_identifiers</code><span class="sig-paren">(</span><em>c</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/pseudoplots.html#test_get_unique_identifiers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.pseudoplots.test_get_unique_identifiers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-reda.plotters.time_series">
+<span id="reda-plotters-time-series-module"></span><h2>reda.plotters.time_series module<a class="headerlink" href="#module-reda.plotters.time_series" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="reda.plotters.time_series.plot_quadpole_evolution">
+<code class="descclassname">reda.plotters.time_series.</code><code class="descname">plot_quadpole_evolution</code><span class="sig-paren">(</span><em>dataobj</em>, <em>quadpole</em>, <em>cols</em>, <em>threshold</em>, <em>rolling=False</em>, <em>ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/time_series.html#plot_quadpole_evolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.time_series.plot_quadpole_evolution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-reda.plotters">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-reda.plotters" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">reda.plotters package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-reda.plotters.histograms">reda.plotters.histograms module</a></li>
+<li><a class="reference internal" href="#module-reda.plotters.plots2d">reda.plotters.plots2d module</a></li>
+<li><a class="reference internal" href="#module-reda.plotters.pseudoplots">reda.plotters.pseudoplots module</a></li>
+<li><a class="reference internal" href="#module-reda.plotters.time_series">reda.plotters.time_series module</a></li>
+<li><a class="reference internal" href="#module-reda.plotters">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">reda</a><ul>
+  <li><a href="reda.html">reda package</a><ul>
+      <li>Previous: <a href="reda.main.html" title="previous chapter">reda.main package</a></li>
+      <li>Next: <a href="reda.testing.html" title="next chapter">reda.testing package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/reda.plotters.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Weigand, M. and Wagner F.M..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/api/reda.plotters.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

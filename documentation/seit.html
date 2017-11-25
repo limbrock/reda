@@ -24,6 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="reda" href="api/modules.html" />
     <link rel="prev" title="Tutorial: Importing and Processing a Syscal Pro dataset" href="syscal.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -79,10 +80,10 @@ separated by spaces or tabs. Each line denotes one measurement:</p>
 <h2>Importing EIT40 data<a class="headerlink" href="#importing-eit40-data" title="Permalink to this headline">¶</a></h2>
 <p>Multi-frequency data is handled by the sEIT container:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">edf.containers.sEIT</span> <span class="k">as</span> <span class="nn">sEIT</span>
-<span class="kn">import</span> <span class="nn">edf.utils.geometric_factors</span> <span class="k">as</span> <span class="nn">edfK</span>
-<span class="kn">import</span> <span class="nn">edf.utils.fix_sign_with_K</span> <span class="k">as</span> <span class="nn">edffixK</span>
-<span class="kn">import</span> <span class="nn">edf.plotters.histograms</span> <span class="k">as</span> <span class="nn">edfH</span>
+<span class="kn">import</span> <span class="nn">reda.containers.sEIT</span> <span class="k">as</span> <span class="nn">sEIT</span>
+<span class="kn">import</span> <span class="nn">reda.utils.geometric_factors</span> <span class="k">as</span> <span class="nn">edfK</span>
+<span class="kn">import</span> <span class="nn">reda.utils.fix_sign_with_K</span> <span class="k">as</span> <span class="nn">edffixK</span>
+<span class="kn">import</span> <span class="nn">reda.plotters.histograms</span> <span class="k">as</span> <span class="nn">edfH</span>
 <span class="n">seit</span> <span class="o">=</span> <span class="n">SEIT</span><span class="o">.</span><span class="n">sEIT</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -170,7 +171,7 @@ geometric factors:</p>
 <h2>Exporting<a class="headerlink" href="#exporting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="crtomo">
 <h3>CRTomo<a class="headerlink" href="#crtomo" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edf.exporters.crtomo</span> <span class="k">as</span> <span class="nn">edfC</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">reda.exporters.crtomo</span> <span class="k">as</span> <span class="nn">edfC</span>
 <span class="n">edfC</span><span class="o">.</span><span class="n">write_files_to_directory</span><span class="p">(</span><span class="n">seit</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;crt_results&#39;</span><span class="p">,</span> <span class="n">norrec</span><span class="o">=</span><span class="s1">&#39;nor&#39;</span><span class="p">,</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -204,6 +205,7 @@ geometric factors:</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="syscal.html" title="previous chapter">Tutorial: Importing and Processing a Syscal Pro dataset</a></li>
+      <li>Next: <a href="api/modules.html" title="next chapter">reda</a></li>
   </ul></li>
 </ul>
 </div>
@@ -232,7 +234,7 @@ geometric factors:</p>
       &copy;2017, Weigand, M. and Wagner F.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

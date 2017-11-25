@@ -1,0 +1,30 @@
+reda\.containers package
+========================
+
+Submodules
+----------
+
+reda\.containers\.ERT module
+----------------------------
+
+.. automodule:: reda.containers.ERT
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+reda\.containers\.sEIT module
+-----------------------------
+
+.. automodule:: reda.containers.sEIT
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: reda.containers
+    :members:
+    :undoc-members:
+    :show-inheritance:
