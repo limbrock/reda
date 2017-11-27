@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Data Containers &#8212; REDA 0.1.0 documentation</title>
+    <title>Status of REDA &#8212; REDA 0.1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Importers" href="importers.html" />
-    <link rel="prev" title="Status of REDA" href="status.html" />
+    <link rel="next" title="Data Containers" href="data_containers.html" />
+    <link rel="prev" title="Welcome to the REDA documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -41,56 +41,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="data-containers">
-<h1>Data Containers<a class="headerlink" href="#data-containers" title="Permalink to this headline">¶</a></h1>
-<p>REDA uses so-called data containers to manage various types of data. A data
-container provides a curated interface to importer functions, exporter
-functions, and processing functionality that is useful to a given data type.
-It also stores the data and associated metadata.</p>
-<p>Available data containers:</p>
-<ul class="simple">
-<li><cite>reda.containers.ERT</cite>: The ERT (Electrical Resistivity Tomography) data
-container stored electrical measurements targeted at imaging processing. This
-implies lots of measurements (hundreds to thousands).</li>
-<li><cite>reda.containers.sEIT</cite>: (experimental) Stores spectral Electrical Impedance
-Tomography (frequency domain complex electrical impedance) measurement data.</li>
-</ul>
-<div class="section" id="required-data-columns">
-<h2>Required data columns<a class="headerlink" href="#required-data-columns" title="Permalink to this headline">¶</a></h2>
-<p>Each data container requires a minimal set of data variables (columns) that any
-importer must return.</p>
-<div class="section" id="ert">
-<h3>ERT<a class="headerlink" href="#ert" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+  <div class="section" id="status-of-reda">
+<h1>Status of REDA<a class="headerlink" href="#status-of-reda" title="Permalink to this headline">¶</a></h1>
+<style> .red {background-color:red} </style>
+<style> .green {background-color:green} </style><table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">Frozen Delights!</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="14%" />
-<col width="86%" />
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">column</th>
-<th class="head">description</th>
+<tr class="row-odd"><th class="head">Feature</th>
+<th class="head">Status</th>
+<th class="head">Explanation</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>A</td>
-<td>First current electrode of quadpole</td>
-</tr>
-<tr class="row-odd"><td>B</td>
-<td>Second current electrode of quadpole</td>
-</tr>
-<tr class="row-even"><td>M</td>
-<td>First potential electrode of quadpole</td>
-</tr>
-<tr class="row-odd"><td>N</td>
-<td>Second potential electrode of quadpole</td>
-</tr>
-<tr class="row-even"><td>R</td>
-<td>Measured resistance [Ohm]</td>
+<tr class="row-even"><td>Syscal text import</td>
+<td><span class="green">imported</span></td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </div>
 
 
@@ -98,30 +71,19 @@ importer must return.</p>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Data Containers</a><ul>
-<li><a class="reference internal" href="#required-data-columns">Required data columns</a><ul>
-<li><a class="reference internal" href="#ert">ERT</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="relations">
+        <div class="sphinxsidebarwrapper"><div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="status.html" title="previous chapter">Status of REDA</a></li>
-      <li>Next: <a href="importers.html" title="next chapter">Data Importers</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to the REDA documentation!</a></li>
+      <li>Next: <a href="data_containers.html" title="next chapter">Data Containers</a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/data_containers.rst.txt"
+      <li><a href="_sources/status.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -147,7 +109,7 @@ importer must return.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/data_containers.rst.txt"
+      <a href="_sources/status.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

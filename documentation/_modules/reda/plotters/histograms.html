@@ -165,8 +165,29 @@
     <span class="k">return</span> <span class="n">figures</span></div>
 
 
-<div class="viewcode-block" id="plot_histograms_extra_dims"><a class="viewcode-back" href="../../../api/reda.plotters.html#reda.plotters.histograms.plot_histograms_extra_dims">[docs]</a><span class="k">def</span> <span class="nf">plot_histograms_extra_dims</span><span class="p">(</span><span class="n">dataobj</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">extra_dims</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Produce histograms grouped by the extra dims.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="plot_histograms_extra_dims"><a class="viewcode-back" href="../../../api/reda.plotters.html#reda.plotters.histograms.plot_histograms_extra_dims">[docs]</a><span class="k">def</span> <span class="nf">plot_histograms_extra_dims</span><span class="p">(</span><span class="n">dataobj</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Produce histograms grouped by the extra dims.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import reda.testing.containers</span>
+<span class="sd">    &gt;&gt;&gt; ert = reda.testing.containers.ERTContainer_nr</span>
+<span class="sd">    &gt;&gt;&gt; import reda.plotters.histograms as RH</span>
+<span class="sd">    &gt;&gt;&gt; fig = RH.plot_histograms_extra_dims(ert, [&#39;R&#39;, ])</span>
+<span class="sd">    &gt;&gt;&gt; fig</span>
+<span class="sd">    &lt;matplotlib.figure.Figure object at ...&gt;</span>
+
+<span class="sd">    &gt;&gt;&gt; import reda.testing.containers</span>
+<span class="sd">    &gt;&gt;&gt; ert = reda.testing.containers.ERTContainer_nr</span>
+<span class="sd">    &gt;&gt;&gt; import reda.plotters.histograms as RH</span>
+<span class="sd">    &gt;&gt;&gt; fig = RH.plot_histograms_extra_dims(ert, [&#39;R&#39;, &#39;A&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; fig</span>
+<span class="sd">    &lt;matplotlib.figure.Figure object at ...&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataobj</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
         <span class="n">df_raw</span> <span class="o">=</span> <span class="n">dataobj</span>
     <span class="k">else</span><span class="p">:</span>
@@ -174,6 +195,8 @@
 
     <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;subquery&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;subquery&#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df_raw</span>
 
     <span class="n">split_timestamps</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">if</span> <span class="n">split_timestamps</span><span class="p">:</span>
@@ -182,10 +205,11 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">group_timestamps</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
         <span class="n">N_ts</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rho_a&#39;</span><span class="p">,</span> <span class="p">]</span>
+
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">keys</span>
     <span class="n">N_c</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 
-    <span class="n">plot_log10</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">plot_log10</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;log10plot&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">plot_log10</span><span class="p">:</span>
         <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lin&#39;</span><span class="p">,</span> <span class="s1">&#39;log10&#39;</span><span class="p">]</span>
         <span class="n">N_log10</span> <span class="o">=</span> <span class="mi">2</span>

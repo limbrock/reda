@@ -79,8 +79,24 @@
 
 <dl class="function">
 <dt id="reda.plotters.histograms.plot_histograms_extra_dims">
-<code class="descclassname">reda.plotters.histograms.</code><code class="descname">plot_histograms_extra_dims</code><span class="sig-paren">(</span><em>dataobj</em>, <em>keys</em>, <em>extra_dims</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/histograms.html#plot_histograms_extra_dims"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.histograms.plot_histograms_extra_dims" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">reda.plotters.histograms.</code><code class="descname">plot_histograms_extra_dims</code><span class="sig-paren">(</span><em>dataobj</em>, <em>keys</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/histograms.html#plot_histograms_extra_dims"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.histograms.plot_histograms_extra_dims" title="Permalink to this definition">¶</a></dt>
 <dd><p>Produce histograms grouped by the extra dims.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.testing.containers</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ert</span> <span class="o">=</span> <span class="n">reda</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">ERTContainer_nr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.plotters.histograms</span> <span class="k">as</span> <span class="nn">RH</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">RH</span><span class="o">.</span><span class="n">plot_histograms_extra_dims</span><span class="p">(</span><span class="n">ert</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span>
+<span class="go">&lt;matplotlib.figure.Figure object at ...&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.testing.containers</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ert</span> <span class="o">=</span> <span class="n">reda</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">ERTContainer_nr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.plotters.histograms</span> <span class="k">as</span> <span class="nn">RH</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">RH</span><span class="o">.</span><span class="n">plot_histograms_extra_dims</span><span class="p">(</span><span class="n">ert</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span>
+<span class="go">&lt;matplotlib.figure.Figure object at ...&gt;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -151,9 +167,26 @@ etc)</dd>
 <span id="reda-plotters-pseudoplots-module"></span><h2>reda.plotters.pseudoplots module<a class="headerlink" href="#module-reda.plotters.pseudoplots" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="reda.plotters.pseudoplots.plot_ps_extra">
-<code class="descclassname">reda.plotters.pseudoplots.</code><code class="descname">plot_ps_extra</code><span class="sig-paren">(</span><em>dataobj</em>, <em>columns</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/pseudoplots.html#plot_ps_extra"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.pseudoplots.plot_ps_extra" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create grouped pseudoplots, either for all columns (one timestep) or
-multiples</p>
+<code class="descclassname">reda.plotters.pseudoplots.</code><code class="descname">plot_ps_extra</code><span class="sig-paren">(</span><em>dataobj</em>, <em>key</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/plotters/pseudoplots.html#plot_ps_extra"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.plotters.pseudoplots.plot_ps_extra" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create grouped pseudoplots for one or more time steps</p>
+<dl class="docutils">
+<dt>dataobj: <a class="reference internal" href="reda.containers.html#module-reda.containers.ERT" title="reda.containers.ERT"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT</span></code></a></dt>
+<dd>An ERT container with loaded data</dd>
+<dt>key: string</dt>
+<dd>The column name to plot</dd>
+</dl>
+<p>subquery: string, optional
+cbmin: float, optional
+cbmax: float, optional</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.testing.containers</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ert</span> <span class="o">=</span> <span class="n">reda</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">ERTContainer_nr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.plotters.pseudoplots</span> <span class="k">as</span> <span class="nn">PS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">PS</span><span class="o">.</span><span class="n">plot_ps_extra</span><span class="p">(</span><span class="n">ert</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;R&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span>
+<span class="gp">...</span>
+<span class="go">&lt;matplotlib.figure.Figure object at ...&gt;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
