@@ -49,7 +49,8 @@
 <span class="kn">import</span> <span class="nn">reda.main.init</span> <span class="k">as</span> <span class="nn">redai</span>
 
 <span class="kn">import</span> <span class="nn">reda.importers.iris_syscal_pro</span> <span class="k">as</span> <span class="nn">reda_syscal</span>
-<span class="kn">import</span> <span class="nn">reda.importers.bert</span> <span class="k">as</span> <span class="nn">reda_bert</span>
+<span class="kn">import</span> <span class="nn">reda.importers.bert</span> <span class="k">as</span> <span class="nn">reda_bert_import</span>
+<span class="kn">import</span> <span class="nn">reda.exporters.bert</span> <span class="k">as</span> <span class="nn">reda_bert_export</span>
 
 <span class="kn">import</span> <span class="nn">reda.utils.geometric_factors</span> <span class="k">as</span> <span class="nn">redaK</span>
 <span class="kn">import</span> <span class="nn">reda.utils.fix_sign_with_K</span> <span class="k">as</span> <span class="nn">redafixK</span>
@@ -118,8 +119,12 @@
 
 
 <div class="viewcode-block" id="Importers"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.Importers">[docs]</a><span class="k">class</span> <span class="nc">Importers</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This class provides wrappers for most of the importer functions, and is</span>
-<span class="sd">    meant to be inherited by the ERT data container</span>
+    <span class="sd">&quot;&quot;&quot;This class provides wrappers for most of the importer functions and is</span>
+<span class="sd">    meant to be inherited by the ERT data container.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    Exporters</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">_add_to_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -156,7 +161,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Summary:&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_describe_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Importers.import_bert"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.Importers.import_bert">[docs]</a>    <span class="nd">@append_doc_of</span><span class="p">(</span><span class="n">reda_bert</span><span class="o">.</span><span class="n">import_ohm</span><span class="p">)</span>
+<div class="viewcode-block" id="Importers.import_bert"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.Importers.import_bert">[docs]</a>    <span class="nd">@append_doc_of</span><span class="p">(</span><span class="n">reda_bert_import</span><span class="o">.</span><span class="n">import_ohm</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">import_bert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;BERT .ohm file import&quot;&quot;&quot;</span>
         <span class="n">timestep</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;timestep&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -166,12 +171,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;BERT .ohm file import&#39;</span><span class="p">)</span>
         <span class="k">with</span> <span class="n">LogDataChanges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filter_action</span><span class="o">=</span><span class="s1">&#39;import&#39;</span><span class="p">,</span>
                             <span class="n">filter_query</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">)):</span>
-            <span class="n">data</span><span class="p">,</span> <span class="n">electrodes</span><span class="p">,</span> <span class="n">topography</span> <span class="o">=</span> <span class="n">reda_bert</span><span class="o">.</span><span class="n">import_ohm</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">electrodes</span><span class="p">,</span> <span class="n">topography</span> <span class="o">=</span> <span class="n">reda_bert_import</span><span class="o">.</span><span class="n">import_ohm</span><span class="p">(</span>
                 <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">timestep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">timestep</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_to_container</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">electrode_positions</span> <span class="o">=</span> <span class="n">electrodes</span> <span class="c1"># See issue #22</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Summary:&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_describe_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
@@ -180,6 +186,20 @@
     <span class="k">def</span> <span class="nf">import_pygimli</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">import_bert</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">)</span></div></div>
 
+<div class="viewcode-block" id="Exporters"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.Exporters">[docs]</a><span class="k">class</span> <span class="nc">Exporters</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This class provides wrappers for most of the exporter functions and is</span>
+<span class="sd">    meant to be inherited by the ERT data container.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    Importers</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Exporters.export_bert"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.Exporters.export_bert">[docs]</a>    <span class="k">def</span> <span class="nf">export_bert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="n">reda_bert_export</span><span class="o">.</span><span class="n">export_bert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">electrode_positions</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Exporters.export_pygimli"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.Exporters.export_pygimli">[docs]</a>    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">export_bert</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">export_pygimli</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">export_bert</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">)</span></div></div>
 
 <div class="viewcode-block" id="ListHandler"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.ListHandler">[docs]</a><span class="k">class</span> <span class="nc">ListHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>  <span class="c1"># Inherit from logging.Handler</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_list</span><span class="p">):</span>
@@ -249,7 +269,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ERT"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.ERT">[docs]</a><span class="k">class</span> <span class="nc">ERT</span><span class="p">(</span><span class="n">LoggingClass</span><span class="p">,</span> <span class="n">Importers</span><span class="p">):</span>
+<div class="viewcode-block" id="ERT"><a class="viewcode-back" href="../../../api/reda.containers.html#reda.containers.ERT.ERT">[docs]</a><span class="k">class</span> <span class="nc">ERT</span><span class="p">(</span><span class="n">LoggingClass</span><span class="p">,</span> <span class="n">Importers</span><span class="p">,</span> <span class="n">Exporters</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">electrode_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">topography</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

@@ -4,6 +4,14 @@ reda\.exporters package
 Submodules
 ----------
 
+reda\.exporters\.bert module
+----------------------------
+
+.. automodule:: reda.exporters.bert
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 reda\.exporters\.crtomo module
 ------------------------------
 

@@ -51,7 +51,7 @@
 <dl class="class">
 <dt id="reda.containers.ERT.ERT">
 <em class="property">class </em><code class="descclassname">reda.containers.ERT.</code><code class="descname">ERT</code><span class="sig-paren">(</span><em>data=None</em>, <em>electrode_positions=None</em>, <em>topography=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#ERT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.ERT" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#reda.containers.ERT.LoggingClass" title="reda.containers.ERT.LoggingClass"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.LoggingClass</span></code></a>, <a class="reference internal" href="#reda.containers.ERT.Importers" title="reda.containers.ERT.Importers"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.Importers</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#reda.containers.ERT.LoggingClass" title="reda.containers.ERT.LoggingClass"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.LoggingClass</span></code></a>, <a class="reference internal" href="#reda.containers.ERT.Importers" title="reda.containers.ERT.Importers"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.Importers</span></code></a>, <a class="reference internal" href="#reda.containers.ERT.Exporters" title="reda.containers.ERT.Exporters"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.Exporters</span></code></a></p>
 <dl class="method">
 <dt id="reda.containers.ERT.ERT.check_dataframe">
 <code class="descname">check_dataframe</code><span class="sig-paren">(</span><em>dataframe</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#ERT.check_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.ERT.check_dataframe" title="Permalink to this definition">¶</a></dt>
@@ -98,11 +98,31 @@ pandas.DataFrame.query</dd>
 </dd></dl>
 
 <dl class="class">
+<dt id="reda.containers.ERT.Exporters">
+<em class="property">class </em><code class="descclassname">reda.containers.ERT.</code><code class="descname">Exporters</code><a class="reference internal" href="../_modules/reda/containers/ERT.html#Exporters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Exporters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This class provides wrappers for most of the exporter functions and is
+meant to be inherited by the ERT data container.</p>
+<p>Importers</p>
+<dl class="method">
+<dt id="reda.containers.ERT.Exporters.export_bert">
+<code class="descname">export_bert</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Exporters.export_bert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Exporters.export_bert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="reda.containers.ERT.Exporters.export_pygimli">
+<code class="descname">export_pygimli</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Exporters.export_pygimli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Exporters.export_pygimli" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="reda.containers.ERT.Importers">
 <em class="property">class </em><code class="descclassname">reda.containers.ERT.</code><code class="descname">Importers</code><a class="reference internal" href="../_modules/reda/containers/ERT.html#Importers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Importers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
-<p>This class provides wrappers for most of the importer functions, and is
-meant to be inherited by the ERT data container</p>
+<p>This class provides wrappers for most of the importer functions and is
+meant to be inherited by the ERT data container.</p>
+<p>Exporters</p>
 <dl class="method">
 <dt id="reda.containers.ERT.Importers.import_bert">
 <code class="descname">import_bert</code><span class="sig-paren">(</span><em>filename</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Importers.import_bert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Importers.import_bert" title="Permalink to this definition">¶</a></dt>
@@ -115,7 +135,7 @@ Construct pandas data frame BERT’s unified data format (<a href="#id1"><span c
 <dd>Enables extended debug output</dd>
 </dl>
 <dl class="docutils">
-<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+245.g262e8ff.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+256.g7627cca.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
 <dd>The measurement data</dd>
 </dl>
 </dd></dl>
@@ -132,7 +152,7 @@ Construct pandas data frame BERT’s unified data format (<a href="#id3"><span c
 <dd>Enables extended debug output</dd>
 </dl>
 <dl class="docutils">
-<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+245.g262e8ff.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+256.g7627cca.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
 <dd>The measurement data</dd>
 </dl>
 </dd></dl>
@@ -167,9 +187,9 @@ treated as the maximum electrode number, and denotations are renamed
 according to the equation <span class="math">\(X_n = N - (X_a - 1)\)</span></dd>
 </dl>
 <dl class="docutils">
-<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+245.g262e8ff.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+256.g7627cca.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
 <dd>Contains the measurement data</dd>
-<dt>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+245.g262e8ff.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
+<dt>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.22.0.dev0+256.g7627cca.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
 <dd>Contains electrode positions (None at the moment)</dd>
 <dt>topography: None</dt>
 <dd>No topography information is contained in the text files, so we always
