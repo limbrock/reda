@@ -67,20 +67,20 @@
         <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;Reading in </span><span class="si">%s</span><span class="s2">... </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">))</span>
     <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
-    <span class="n">eleccount</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
-    <span class="n">elecs_str</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-    <span class="n">elecs_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elecs_str</span><span class="o">.</span><span class="n">rsplit</span><span class="p">())</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">elecs_ix</span> <span class="o">=</span> <span class="n">elecs_str</span><span class="o">.</span><span class="n">rsplit</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">eleccount</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">elecs_str</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">elecs_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elecs_str</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">elecs_ix</span> <span class="o">=</span> <span class="n">elecs_str</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
     <span class="n">elecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">eleccount</span><span class="p">,</span> <span class="n">elecs_dim</span><span class="p">),</span> <span class="s1">&#39;float&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">eleccount</span><span class="p">):</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">elecs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rsplit</span><span class="p">()</span>
 
-    <span class="n">datacount</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
-    <span class="n">data_str</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-    <span class="n">data_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_str</span><span class="o">.</span><span class="n">rsplit</span><span class="p">())</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">data_ix</span> <span class="o">=</span> <span class="n">data_str</span><span class="o">.</span><span class="n">rsplit</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">datacount</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">data_str</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">data_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_str</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">data_ix</span> <span class="o">=</span> <span class="n">data_str</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
     <span class="n">_string_</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    Number of electrodes: </span><span class="si">%s</span><span class="s2"></span>
