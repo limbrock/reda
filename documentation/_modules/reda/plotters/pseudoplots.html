@@ -174,73 +174,74 @@
 <span class="sd">    cb:</span>
 <span class="sd">        colorbar object</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    You can just supply a data vector to the plot function:</span>
-
-<span class="sd">    .. plot::</span>
-<span class="sd">        :include-source:</span>
-
-<span class="sd">        import numpy as np</span>
-<span class="sd">        import crtomo.configManager as CRConfig</span>
-<span class="sd">        configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="sd">        configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
-<span class="sd">        measurements = np.random.random(configs.nr_of_configs)</span>
-<span class="sd">        configs.plot_pseudosection_type2(</span>
-<span class="sd">            mid=measurements,</span>
-<span class="sd">        )</span>
-
-<span class="sd">    Generate a simple type 2 plot:</span>
-
-<span class="sd">    .. plot::</span>
-<span class="sd">        :include-source:</span>
-
-<span class="sd">        import numpy as np</span>
-<span class="sd">        import crtomo.configManager as CRConfig</span>
-<span class="sd">        configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="sd">        configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
-<span class="sd">        measurements = np.random.random(configs.nr_of_configs)</span>
-<span class="sd">        mid = configs.add_measurements(measurements)</span>
-<span class="sd">        configs.plot_pseudosection_type2(</span>
-<span class="sd">            mid,</span>
-<span class="sd">            cblabel=&#39;this label&#39;,</span>
-<span class="sd">            xlabel=&#39;xlabel&#39;,</span>
-<span class="sd">            ylabel=&#39;ylabel&#39;,</span>
-<span class="sd">        )</span>
-
-<span class="sd">    You can also supply axes to plot to:</span>
-
-<span class="sd">    .. plot::</span>
-<span class="sd">        :include-source:</span>
-
-<span class="sd">        import numpy as np</span>
-<span class="sd">        from crtomo.mpl_setup import *</span>
-<span class="sd">        import crtomo.configManager as CRConfig</span>
-
-<span class="sd">        configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="sd">        configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
-<span class="sd">        K = configs.compute_K_factors(spacing=1)</span>
-<span class="sd">        measurements = np.random.random(configs.nr_of_configs)</span>
-<span class="sd">        mid = configs.add_measurements(measurements)</span>
-
-<span class="sd">        fig, axes = plt.subplots(1, 2)</span>
-
-<span class="sd">        configs.plot_pseudosection_type2(</span>
-<span class="sd">            mid,</span>
-<span class="sd">            ax=axes[0],</span>
-<span class="sd">            cblabel=&#39;this label&#39;,</span>
-<span class="sd">            xlabel=&#39;xlabel&#39;,</span>
-<span class="sd">            ylabel=&#39;ylabel&#39;,</span>
-<span class="sd">        )</span>
-<span class="sd">        configs.plot_pseudosection_type2(</span>
-<span class="sd">            K,</span>
-<span class="sd">            ax=axes[1],</span>
-<span class="sd">            cblabel=&#39;K factor&#39;,</span>
-<span class="sd">            xlabel=&#39;xlabel&#39;,</span>
-<span class="sd">            ylabel=&#39;ylabel&#39;,</span>
-<span class="sd">        )</span>
-<span class="sd">        fig.tight_layout()</span>
+<span class="sd">    # Examples</span>
+<span class="sd">    # --------</span>
+<span class="sd">    #</span>
+<span class="sd">    # You can just supply a data vector to the plot function:</span>
+<span class="sd">    #</span>
+<span class="sd">    # .. plot::</span>
+<span class="sd">    #     :include-source:</span>
+<span class="sd">    #</span>
+<span class="sd">    #     # Missing dependency on travis</span>
+<span class="sd">    #     # import numpy as np</span>
+<span class="sd">    #     # import crtomo.configManager as CRConfig</span>
+<span class="sd">    #     # configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
+<span class="sd">    #     # configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
+<span class="sd">    #     # measurements = np.random.random(configs.nr_of_configs)</span>
+<span class="sd">    #     # configs.plot_pseudosection_type2(</span>
+<span class="sd">    #     #     mid=measurements,</span>
+<span class="sd">    #     # )</span>
+<span class="sd">    #</span>
+<span class="sd">    # Generate a simple type 2 plot:</span>
+<span class="sd">    #</span>
+<span class="sd">    # .. plot::</span>
+<span class="sd">    #     :include-source:</span>
+<span class="sd">    #</span>
+<span class="sd">    #     # import numpy as np</span>
+<span class="sd">    #     # import crtomo.configManager as CRConfig</span>
+<span class="sd">    #     # configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
+<span class="sd">    #     # configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
+<span class="sd">    #     # measurements = np.random.random(configs.nr_of_configs)</span>
+<span class="sd">    #     # mid = configs.add_measurements(measurements)</span>
+<span class="sd">    #     # configs.plot_pseudosection_type2(</span>
+<span class="sd">    #     #     mid,</span>
+<span class="sd">    #     #     cblabel=&#39;this label&#39;,</span>
+<span class="sd">    #     #     xlabel=&#39;xlabel&#39;,</span>
+<span class="sd">    #     #     ylabel=&#39;ylabel&#39;,</span>
+<span class="sd">    #     # )</span>
+<span class="sd">    #</span>
+<span class="sd">    # You can also supply axes to plot to:</span>
+<span class="sd">    #</span>
+<span class="sd">    # .. plot::</span>
+<span class="sd">    #     :include-source:</span>
+<span class="sd">    #</span>
+<span class="sd">    #     import numpy as np</span>
+<span class="sd">    #     from crtomo.mpl_setup import *</span>
+<span class="sd">    #     import crtomo.configManager as CRConfig</span>
+<span class="sd">    #</span>
+<span class="sd">    #     configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
+<span class="sd">    #     configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
+<span class="sd">    #     K = configs.compute_K_factors(spacing=1)</span>
+<span class="sd">    #     measurements = np.random.random(configs.nr_of_configs)</span>
+<span class="sd">    #     mid = configs.add_measurements(measurements)</span>
+<span class="sd">    #</span>
+<span class="sd">    #     fig, axes = plt.subplots(1, 2)</span>
+<span class="sd">    #</span>
+<span class="sd">    #     configs.plot_pseudosection_type2(</span>
+<span class="sd">    #         mid,</span>
+<span class="sd">    #         ax=axes[0],</span>
+<span class="sd">    #         cblabel=&#39;this label&#39;,</span>
+<span class="sd">    #         xlabel=&#39;xlabel&#39;,</span>
+<span class="sd">    #         ylabel=&#39;ylabel&#39;,</span>
+<span class="sd">    #     )</span>
+<span class="sd">    #     configs.plot_pseudosection_type2(</span>
+<span class="sd">    #         K,</span>
+<span class="sd">    #         ax=axes[1],</span>
+<span class="sd">    #         cblabel=&#39;K factor&#39;,</span>
+<span class="sd">    #         xlabel=&#39;xlabel&#39;,</span>
+<span class="sd">    #         ylabel=&#39;ylabel&#39;,</span>
+<span class="sd">    #     )</span>
+<span class="sd">    #     fig.tight_layout()</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -461,7 +462,7 @@
       &copy;2017, Weigand, M. and Wagner F.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>

@@ -63,18 +63,30 @@ not ‘chosen’ by any previously applied filters.</p>
 <dt id="reda.utils.filter_config_types.filter">
 <code class="descclassname">reda.utils.filter_config_types.</code><code class="descname">filter</code><span class="sig-paren">(</span><em>configs</em>, <em>settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/utils/filter_config_types.html#filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.utils.filter_config_types.filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main entry function to filtering configuration types</p>
-<dl class="docutils">
-<dt>configs: Nx4 array</dt>
-<dd>array containing A-B-M-N configurations</dd>
-<dt>settings: dict</dt>
-<dd>‘only_types’: [‘dd’, ‘other’],  # filter only for those types</dd>
-</dl>
-<dl class="docutils">
-<dt>dict</dt>
-<dd>results dict containing filter results (indices) for all registered
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>configs: Nx4 array</strong></p>
+<blockquote>
+<div><p>array containing A-B-M-N configurations</p>
+</div></blockquote>
+<p><strong>settings: dict</strong></p>
+<blockquote>
+<div><p>‘only_types’: [‘dd’, ‘other’],  # filter only for those types</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>results dict containing filter results (indices) for all registered
 filter functions.  All remaining configs are stored under the keywords
-‘remaining’</dd>
-</dl>
+‘remaining’</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -98,14 +110,24 @@ positive. Also, swap signs of all parameters affected by this process.</p>
 <li>rpha</li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>dataframe: pandas.DateFrame</dt>
-<dd>dataframe holding the data</dd>
-</dl>
-<dl class="docutils">
-<dt>dataframe: pandas.DateFrame</dt>
-<dd>the fixed dataframe</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dataframe: pandas.DateFrame</strong></p>
+<blockquote>
+<div><p>dataframe holding the data</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dataframe: pandas.DateFrame</p>
+<blockquote class="last">
+<div><p>the fixed dataframe</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -121,16 +143,24 @@ positive. Also, swap signs of all parameters affected by this process.</p>
 <dl class="function">
 <dt id="reda.utils.geom_fac_crtomo.compute_K">
 <code class="descclassname">reda.utils.geom_fac_crtomo.</code><code class="descname">compute_K</code><span class="sig-paren">(</span><em>dataframe</em>, <em>settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/utils/geom_fac_crtomo.html#compute_K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.utils.geom_fac_crtomo.compute_K" title="Permalink to this definition">¶</a></dt>
-<dd><p>dataframe: dataframe that contains the data
-settings: dict with required settings, see below</p>
-<dl class="docutils">
-<dt>settings = {</dt>
-<dd>‘rho’: 100,  # resistivity to use for homogeneous model, [Ohm m]
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dataframe: dataframe that contains the data</strong></p>
+<p><strong>settings: dict with required settings, see below</strong></p>
+<p><strong>settings = {</strong></p>
+<blockquote>
+<div><p>‘rho’: 100,  # resistivity to use for homogeneous model, [Ohm m]
 ‘elem’
 ‘elec’
-‘2D’ : True|False</dd>
-</dl>
-<p>}</p>
+‘2D’ : True|False</p>
+</div></blockquote>
+<p class="last"><strong>}</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -157,13 +187,23 @@ resistivities/conductivities</p>
 equation for the homogeneous half-space (Neumann-equation)</p>
 <p>If a dataframe is given, use the column (A, B, M, N). Otherwise, expect an
 Nx4 arrray.</p>
-<dl class="docutils">
-<dt>dataframe: pandas.DataFrame or numpy.ndarray</dt>
-<dd>Configurations, either as DataFrame</dd>
-<dt>spacing: float or numpy.ndarray</dt>
-<dd>distance between electrodes. If array, then these are the x-coordinates
-of the electrodes</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dataframe: pandas.DataFrame or numpy.ndarray</strong></p>
+<blockquote>
+<div><p>Configurations, either as DataFrame</p>
+</div></blockquote>
+<p><strong>spacing: float or numpy.ndarray</strong></p>
+<blockquote class="last">
+<div><p>distance between electrodes. If array, then these are the x-coordinates
+of the electrodes</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -171,17 +211,30 @@ of the electrodes</dd>
 <code class="descclassname">reda.utils.geometric_factors.</code><code class="descname">compute_K_numerical</code><span class="sig-paren">(</span><em>dataframe</em>, <em>settings=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/utils/geometric_factors.html#compute_K_numerical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.utils.geometric_factors.compute_K_numerical" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use a finite-element modeling code to infer geometric factors for meshes
 with topography or irregular electrode spacings.</p>
-<dl class="docutils">
-<dt>dataframe: pandas.DataFrame</dt>
-<dd>the data frame that contains the data</dd>
-<dt>settings: dict</dt>
-<dd>The settings required to compute the geometric factors. See examples
-down below for more information in the required content.</dd>
-</dl>
-<dl class="docutils">
-<dt>K</dt>
-<dd>K factors (are also directly written to the dataframe)</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dataframe: pandas.DataFrame</strong></p>
+<blockquote>
+<div><p>the data frame that contains the data</p>
+</div></blockquote>
+<p><strong>settings: dict</strong></p>
+<blockquote>
+<div><p>The settings required to compute the geometric factors. See examples
+down below for more information in the required content.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">K</p>
+<blockquote class="last">
+<div><p>K factors (are also directly written to the dataframe)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
 <dl class="docutils">
 <dt>settings = {</dt>
 <dd>‘rho’: 100,
@@ -203,12 +256,23 @@ If <cite>module</cite> cannot be imported, a warning is printed followed by the
 <cite>requiredFor</cite> string. Otherwise, the imported <cite>module</cite> will be returned.
 This function should be used to import optional dependencies in order to
 avoid repeated try/except statements.</p>
-<dl class="docutils">
-<dt>module <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd>Name of the module to be imported.</dd>
-<dt>requiredFor <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd>Info string for the purpose of the dependency.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>module</strong> : str</p>
+<blockquote>
+<div><p>Name of the module to be imported.</p>
+</div></blockquote>
+<p><strong>requiredFor</strong> : str, optional</p>
+<blockquote class="last">
+<div><p>Info string for the purpose of the dependency.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reda.utils</span> <span class="k">import</span> <span class="n">opt_import</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reda</span> <span class="o">=</span> <span class="n">opt_import</span><span class="p">(</span><span class="s2">&quot;reda&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reda</span><span class="o">.</span><span class="vm">__name__</span>
@@ -255,6 +319,7 @@ object. Take into account the changes of the axes due to aspect ratio
 settings.</p>
 <p>Parts of this code are taken from the transforms.py file from matplotlib</p>
 <p>Important: Use only AFTER fig.subplots_adjust(…)</p>
+<p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -275,23 +340,36 @@ settings.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cb1</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">artists</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">cb1</span><span class="o">.</span><span class="n">outline</span><span class="p">)</span>    <span class="c1"># remove framei</span>
 </pre></div>
 </div>
+<p>(<a class="reference external" href="../api/reda-utils-1.py">Source code</a>)</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="reda.utils.mpl.setup">
 <code class="descclassname">reda.utils.mpl.</code><code class="descname">setup</code><span class="sig-paren">(</span><em>use_latex=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/utils/mpl.html#setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.utils.mpl.setup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up matplotlib imports and settings.</p>
-<dl class="docutils">
-<dt>use_latex: bool, optional</dt>
-<dd>Determine if Latex output should be used. Latex will only be enable if
-a ‘latex’ binary is found in the system.</dd>
-</dl>
-<dl class="docutils">
-<dt>plt: <code class="xref py py-mod docutils literal"><span class="pre">pylab</span></code></dt>
-<dd>pylab module imported as plt</dd>
-<dt>mpl: <code class="xref py py-mod docutils literal"><span class="pre">matplotlib</span></code></dt>
-<dd>matplotlib module imported as mpl</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>use_latex: bool, optional</strong></p>
+<blockquote>
+<div><p>Determine if Latex output should be used. Latex will only be enable if
+a ‘latex’ binary is found in the system.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">plt: <code class="xref py py-mod docutils literal"><span class="pre">pylab</span></code></p>
+<blockquote>
+<div><p>pylab module imported as plt</p>
+</div></blockquote>
+<p>mpl: <code class="xref py py-mod docutils literal"><span class="pre">matplotlib</span></code></p>
+<blockquote class="last">
+<div><p>matplotlib module imported as mpl</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -303,13 +381,25 @@ a ‘latex’ binary is found in the system.</dd>
 <code class="descclassname">reda.utils.norrec.</code><code class="descname">assign_norrec_diffs</code><span class="sig-paren">(</span><em>df</em>, <em>diff_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/utils/norrec.html#assign_norrec_diffs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.utils.norrec.assign_norrec_diffs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute and write the difference between normal and reciprocal values
 for all columns specified in the diff_list parameter.</p>
-<dl class="docutils">
-<dt>df: pandas.DataFrame</dt>
-<dd>Dataframe containing the data</dd>
-<dt>diff_list: list</dt>
-<dd>list of columns to compute differences for.</dd>
-</dl>
-<p>df_new</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>df: pandas.DataFrame</strong></p>
+<blockquote>
+<div><p>Dataframe containing the data</p>
+</div></blockquote>
+<p><strong>diff_list: list</strong></p>
+<blockquote>
+<div><p>list of columns to compute differences for.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">df_new</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -322,13 +412,23 @@ for all columns specified in the diff_list parameter.</p>
 <code class="descclassname">reda.utils.norrec.</code><code class="descname">average_repetitions</code><span class="sig-paren">(</span><em>df</em>, <em>keys_mean</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/utils/norrec.html#average_repetitions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.utils.norrec.average_repetitions" title="Permalink to this definition">¶</a></dt>
 <dd><p>average duplicate measurements. This requires that IDs and norrec labels
 were assigned using the <em>assign_norrec_to_df</em> function.</p>
-<dl class="docutils">
-<dt>df</dt>
-<dd>DataFrame</dd>
-<dt>keys_mean: list</dt>
-<dd>list of keys to average. For all other keys the first entry will be
-used.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>df</strong></p>
+<blockquote>
+<div><p>DataFrame</p>
+</div></blockquote>
+<p><strong>keys_mean: list</strong></p>
+<blockquote class="last">
+<div><p>list of keys to average. For all other keys the first entry will be
+used.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -452,7 +552,7 @@ geometric factors using inversion algorithms.</p>
       &copy;2017, Weigand, M. and Wagner F.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

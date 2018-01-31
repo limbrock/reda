@@ -24,8 +24,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="reda.main package" href="reda.main.html" />
-    <link rel="prev" title="reda.exporters package" href="reda.exporters.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -54,16 +52,28 @@ dc2dinvres.</p>
 <dt id="reda.importers.bert.import_ohm">
 <code class="descclassname">reda.importers.bert.</code><code class="descname">import_ohm</code><span class="sig-paren">(</span><em>filename</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/bert.html#import_ohm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.bert.import_ohm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct pandas data frame BERT’s unified data format (<a href="#id1"><span class="problematic" id="id2">*</span></a>.ohm).</p>
-<dl class="docutils">
-<dt>filename: string</dt>
-<dd>File path to .ohm file</dd>
-<dt>verbose: bool, optional</dt>
-<dd>Enables extended debug output</dd>
-</dl>
-<dl class="docutils">
-<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+38.g6552718.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
-<dd>The measurement data</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename: string</strong></p>
+<blockquote>
+<div><p>File path to .ohm file</p>
+</div></blockquote>
+<p><strong>verbose: bool, optional</strong></p>
+<blockquote>
+<div><p>Enables extended debug output</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+191.gd37d867.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<blockquote class="last">
+<div><p>The measurement data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -213,32 +223,53 @@ container: ERT container to add dataset to</p>
 <dt id="reda.importers.iris_syscal_pro.import_txt">
 <code class="descclassname">reda.importers.iris_syscal_pro.</code><code class="descname">import_txt</code><span class="sig-paren">(</span><em>filename</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/iris_syscal_pro.html#import_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.iris_syscal_pro.import_txt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import Syscal measurements from a text file, exported as ‘Spreadsheet’.</p>
-<dl class="docutils">
-<dt>filename: string</dt>
-<dd>input filename</dd>
-<dt>x0: float</dt>
-<dd>position of first electrode. If not given, then use the smallest
-x-position in the data as the first electrode.</dd>
-<dt>spacing: float</dt>
-<dd>electrode spacing. This is important if not all electrodes are used in
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename: string</strong></p>
+<blockquote>
+<div><p>input filename</p>
+</div></blockquote>
+<p><strong>x0: float</strong></p>
+<blockquote>
+<div><p>position of first electrode. If not given, then use the smallest
+x-position in the data as the first electrode.</p>
+</div></blockquote>
+<p><strong>spacing: float</strong></p>
+<blockquote>
+<div><p>electrode spacing. This is important if not all electrodes are used in
 a given measurement setup. If not given, then the smallest distance
 between electrodes is assumed to be the electrode spacing. Naturally,
-this requires measurements (or injections) with subsequent electrodes.</dd>
-<dt>reciprocals: int, optional</dt>
-<dd>if provided, then assume that this is a reciprocal measurements where
+this requires measurements (or injections) with subsequent electrodes.</p>
+</div></blockquote>
+<p><strong>reciprocals: int, optional</strong></p>
+<blockquote>
+<div><p>if provided, then assume that this is a reciprocal measurements where
 only the electrode cables were switched. The provided number N is
 treated as the maximum electrode number, and denotations are renamed
-according to the equation <span class="math">\(X_n = N - (X_a - 1)\)</span></dd>
-</dl>
-<dl class="docutils">
-<dt>data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+38.g6552718.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
-<dd>Contains the measurement data</dd>
-<dt>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+38.g6552718.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></dt>
-<dd>Contains electrode positions (None at the moment)</dd>
-<dt>topography: None</dt>
-<dd>No topography information is contained in the text files, so we always
-return None</dd>
-</dl>
+according to the equation <span class="math">\(X_n = N - (X_a - 1)\)</span></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+191.gd37d867.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<blockquote>
+<div><p>Contains the measurement data</p>
+</div></blockquote>
+<p>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+191.gd37d867.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<blockquote>
+<div><p>Contains electrode positions (None at the moment)</p>
+</div></blockquote>
+<p>topography: None</p>
+<blockquote class="last">
+<div><p>No topography information is contained in the text files, so we always
+return None</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
 <ul class="simple">
 <li>TODO: we could try to infer electrode spacing from the file itself</li>
 </ul>
@@ -262,34 +293,50 @@ return None</dd>
 <code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">parse_radic_file</code><span class="sig-paren">(</span><em>filename</em>, <em>settings</em>, <em>selection_mode='after'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#parse_radic_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.parse_radic_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import one result file as produced by the SIP256c SIP measuring device
 (Radic Research)</p>
-<p>filename: input filename, usually with the ending “.RES”</p>
-<dl class="docutils">
-<dt>settings = {</dt>
-<dd><p class="first">‘filter_skip’: (integer) skip dipoles we are interested in
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename: input filename, usually with the ending “.RES”</strong></p>
+<p><strong>settings = {</strong></p>
+<blockquote>
+<div><p>‘filter_skip’: (integer) skip dipoles we are interested in
 ‘quadrupole_mode’: [‘after’|’between’|’before’| ‘all’]</p>
+<blockquote>
+<div><p>which dipoles to use from the file</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>}</strong></p>
+<p><strong>selection_mode: which voltage dipoles should be returned. Possible choices:</strong></p>
 <blockquote class="last">
-<div>which dipoles to use from the file</div></blockquote>
-</dd>
-</dl>
-<p>}</p>
-<dl class="docutils">
-<dt>selection_mode: which voltage dipoles should be returned. Possible choices:</dt>
-<dd>“all”
+<div><p>“all”
 “before”
-“after”</dd>
-</dl>
+“after”</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="reda.importers.radic_sip256c.parse_readic_header">
 <code class="descclassname">reda.importers.radic_sip256c.</code><code class="descname">parse_readic_header</code><span class="sig-paren">(</span><em>header_group</em>, <em>dipole_mode='all'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/radic_sip256c.html#parse_readic_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.radic_sip256c.parse_readic_header" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>dipole_mode: Which dipoles should be extracted</dt>
-<dd>“all”
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dipole_mode: Which dipoles should be extracted</strong></p>
+<blockquote class="last">
+<div><p>“all”
 “before”
 “between”
-“after”</dd>
-</dl>
+“after”</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -348,12 +395,6 @@ return None</dd>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">reda</a><ul>
-  <li><a href="reda.html">reda package</a><ul>
-      <li>Previous: <a href="reda.exporters.html" title="previous chapter">reda.exporters package</a></li>
-      <li>Next: <a href="reda.main.html" title="next chapter">reda.main package</a></li>
-  </ul></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -382,7 +423,7 @@ return None</dd>
       &copy;2017, Weigand, M. and Wagner F.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
