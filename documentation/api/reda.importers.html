@@ -24,6 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="reda.main package" href="reda.main.html" />
+    <link rel="prev" title="reda.exporters package" href="reda.exporters.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -66,7 +68,7 @@ dc2dinvres.</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+191.gd37d867.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote class="last">
 <div><p>The measurement data</p>
 </div></blockquote>
@@ -123,19 +125,34 @@ EMD(n).Zg3 Impedance between injection electrodes</div></blockquote>
 <div>required if we use the arctan2 function?)</div></blockquote>
 <ul class="simple">
 <li>compute variance/standard deviation from the repetition values</li>
+</ul>
+<p>Open questions:</p>
+<ul class="simple">
 <li>should we provide a time delta between the two measurements?</li>
 </ul>
 <dl class="function">
 <dt id="reda.importers.eit160.import_medusa_data">
-<code class="descclassname">reda.importers.eit160.</code><code class="descname">import_medusa_data</code><span class="sig-paren">(</span><em>mat_filename</em>, <em>configs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/eit160.html#import_medusa_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.eit160.import_medusa_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="reda.importers.eit160.read_mat_mnu0">
-<code class="descclassname">reda.importers.eit160.</code><code class="descname">read_mat_mnu0</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/eit160.html#read_mat_mnu0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.eit160.read_mat_mnu0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Import a .mat file with single potentials (A B M) into a pandas
-DataFrame</p>
-<p>Also export some variables of the md struct into a separate structure</p>
+<code class="descclassname">reda.importers.eit160.</code><code class="descname">import_medusa_data</code><span class="sig-paren">(</span><em>mat_filename</em>, <em>config_file</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/eit160.html#import_medusa_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.eit160.import_medusa_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import measurement data (a .mat file) of the FZJ EIT160 system. This
+data format is identified as ‘FZJ-EZ-2017’.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mat_filename: string</strong></p>
+<blockquote>
+<div><p>filename to the .mat data file. Note that only MNU0 single-potentials
+are supported!</p>
+</div></blockquote>
+<p><strong>config_file: string</strong></p>
+<blockquote class="last">
+<div><p>filename for configuration file. The configuration file contains N rows
+with 4 columns each (A, B, M, N)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -252,11 +269,11 @@ according to the equation <span class="math">\(X_n = N - (X_a - 1)\)</span></p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+191.gd37d867.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote>
 <div><p>Contains the measurement data</p>
 </div></blockquote>
-<p>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+191.gd37d867.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<p>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote>
 <div><p>Contains electrode positions (None at the moment)</p>
 </div></blockquote>
@@ -395,6 +412,12 @@ return None</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">reda</a><ul>
+  <li><a href="reda.html">reda package</a><ul>
+      <li>Previous: <a href="reda.exporters.html" title="previous chapter">reda.exporters package</a></li>
+      <li>Next: <a href="reda.main.html" title="next chapter">reda.main package</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -423,7 +446,7 @@ return None</p>
       &copy;2017, Weigand, M. and Wagner F.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

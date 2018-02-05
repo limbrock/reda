@@ -6,6 +6,10 @@ Subpackages
 
 .. toctree::
 
+    reda.containers
+    reda.exporters
+    reda.importers
+    reda.main
     reda.plotters
     reda.testing
     reda.utils
