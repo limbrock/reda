@@ -1,5 +1,6 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from reda.utils.mpl import mpl_get_cb_bound_next_to_plot
 fig, ax = plt.subplots()
 cb_pos = mpl_get_cb_bound_next_to_plot(ax)
 ax1 = fig.add_axes(cb_pos, frame_on=True)

@@ -70,14 +70,17 @@
 <span class="sd">- read quadrupoles from separate file or provide numpy array</span>
 <span class="sd">- compute mean of three impedance measurement repetitions (Z1-Z3) for each ABM</span>
 <span class="sd">- compute quadrupole impedance via superposition using</span>
+
 <span class="sd">    - a) averaged Z-values</span>
 <span class="sd">    - b) the single repetitions Z1-Z3</span>
-<span class="sd">(I think we don&#39;t need the next step because of np.arctan2)</span>
-<span class="sd">- check for correct quadrant in phase values, correct if necessary (is this</span>
-<span class="sd">  required if we use the arctan2 function?)</span>
-<span class="sd">- compute variance/standard deviation from the repetition values</span>
 
-<span class="sd">- should we provide a time delta between the two measurements?</span>
+<span class="sd">* (I think we don&#39;t need the next step because of np.arctan2)</span>
+<span class="sd">  check for correct quadrant in phase values, correct if necessary (is this</span>
+<span class="sd">  required if we use the arctan2 function?)</span>
+
+<span class="sd">* compute variance/standard deviation from the repetition values</span>
+
+<span class="sd">* should we provide a time delta between the two measurements?</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>

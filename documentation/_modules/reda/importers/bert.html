@@ -48,8 +48,7 @@
 
 
 <div class="viewcode-block" id="import_ohm"><a class="viewcode-back" href="../../../api/reda.importers.html#reda.importers.bert.import_ohm">[docs]</a><span class="k">def</span> <span class="nf">import_ohm</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Construct pandas data frame BERT&#39;s unified data format (*.ohm).</span>
+    <span class="sd">&quot;&quot;&quot;Construct pandas data frame from BERT`s unified data format (.ohm).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -62,6 +61,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    data: :class:`pandas.DataFrame`</span>
 <span class="sd">       The measurement data</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;Reading in </span><span class="si">%s</span><span class="s2">... </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">))</span>
@@ -114,7 +114,10 @@
     <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="s1">&#39;R&#39;</span> <span class="ow">in</span> <span class="n">data_reda</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="ow">and</span> \
        <span class="p">(</span><span class="s1">&#39;rho_a&#39;</span> <span class="ow">in</span> <span class="n">data_reda</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;K&#39;</span> <span class="ow">in</span> <span class="n">data_reda</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
         <span class="n">data_reda</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_reda</span><span class="p">[</span><span class="s1">&#39;rho_a&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data_reda</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating resistance from apparent resistivity and geometric factors. (R = rhoa_/K)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Calculating resistance from apparent resistivity and &quot;</span>
+            <span class="s2">&quot;geometric factors. (R = rhoa_/K)&quot;</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">):</span>
         <span class="n">data_reda</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_reda</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 

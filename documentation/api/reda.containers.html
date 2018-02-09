@@ -53,6 +53,50 @@
 <em class="property">class </em><code class="descclassname">reda.containers.ERT.</code><code class="descname">ERT</code><span class="sig-paren">(</span><em>data=None</em>, <em>electrode_positions=None</em>, <em>topography=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#ERT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.ERT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#reda.containers.ERT.LoggingClass" title="reda.containers.ERT.LoggingClass"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.LoggingClass</span></code></a>, <a class="reference internal" href="#reda.containers.ERT.Importers" title="reda.containers.ERT.Importers"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.Importers</span></code></a>, <a class="reference internal" href="#reda.containers.ERT.Exporters" title="reda.containers.ERT.Exporters"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.ERT.Exporters</span></code></a></p>
 <p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.ERT.check_dataframe" title="reda.containers.ERT.ERT.check_dataframe"><code class="xref py py-obj docutils literal"><span class="pre">check_dataframe</span></code></a>(dataframe)</td>
+<td>Check the given dataframe for the required type and columns</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.ERT.ERT.compute_K_analytical" title="reda.containers.ERT.ERT.compute_K_analytical"><code class="xref py py-obj docutils literal"><span class="pre">compute_K_analytical</span></code></a>(spacing)</td>
+<td>Compute geometrical factors over the homogeneous half-space with a</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">export_bert</span></code>(filename)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">export_pygimli</span></code>(filename)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.ERT.filter" title="reda.containers.ERT.ERT.filter"><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code></a>(query[,&nbsp;inplace])</td>
+<td>Use a query statement to filter data.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">import_bert</span></code>(filename,&nbsp;**kwargs)</td>
+<td>BERT .ohm file importConstruct pandas data frame from BERT`s unified data format (.ohm).</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">import_pygimli</span></code>(filename,&nbsp;**kwargs)</td>
+<td>BERT .ohm file importConstruct pandas data frame from BERT`s unified data format (.ohm).</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">import_syscal_txt</span></code>(filename,&nbsp;**kwargs)</td>
+<td>Syscal import</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">print_data_journal</span></code>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">print_log</span></code>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">setup_logger</span></code>()</td>
+<td>Setup a logger</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.ERT.ERT.sub_filter" title="reda.containers.ERT.ERT.sub_filter"><code class="xref py py-obj docutils literal"><span class="pre">sub_filter</span></code></a>(subset,&nbsp;filter[,&nbsp;inplace])</td>
+<td>Apply a filter to subset of the data</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="reda.containers.ERT.ERT.check_dataframe">
 <code class="descname">check_dataframe</code><span class="sig-paren">(</span><em>dataframe</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#ERT.check_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.ERT.check_dataframe" title="Permalink to this definition">¶</a></dt>
@@ -115,6 +159,20 @@ meant to be inherited by the ERT data container.</p>
 <p class="last"><a class="reference internal" href="#reda.containers.ERT.Importers" title="reda.containers.ERT.Importers"><code class="xref py py-obj docutils literal"><span class="pre">Importers</span></code></a></p>
 </div>
 <p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.Exporters.export_bert" title="reda.containers.ERT.Exporters.export_bert"><code class="xref py py-obj docutils literal"><span class="pre">export_bert</span></code></a>(filename)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.ERT.Exporters.export_pygimli" title="reda.containers.ERT.Exporters.export_pygimli"><code class="xref py py-obj docutils literal"><span class="pre">export_pygimli</span></code></a>(filename)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="reda.containers.ERT.Exporters.export_bert">
 <code class="descname">export_bert</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Exporters.export_bert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Exporters.export_bert" title="Permalink to this definition">¶</a></dt>
@@ -138,11 +196,27 @@ meant to be inherited by the ERT data container.</p>
 <p class="last"><a class="reference internal" href="#reda.containers.ERT.Exporters" title="reda.containers.ERT.Exporters"><code class="xref py py-obj docutils literal"><span class="pre">Exporters</span></code></a></p>
 </div>
 <p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.Importers.import_bert" title="reda.containers.ERT.Importers.import_bert"><code class="xref py py-obj docutils literal"><span class="pre">import_bert</span></code></a>(filename,&nbsp;**kwargs)</td>
+<td>BERT .ohm file importConstruct pandas data frame from BERT`s unified data format (.ohm).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.ERT.Importers.import_pygimli" title="reda.containers.ERT.Importers.import_pygimli"><code class="xref py py-obj docutils literal"><span class="pre">import_pygimli</span></code></a>(filename,&nbsp;**kwargs)</td>
+<td>BERT .ohm file importConstruct pandas data frame from BERT`s unified data format (.ohm).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.Importers.import_syscal_txt" title="reda.containers.ERT.Importers.import_syscal_txt"><code class="xref py py-obj docutils literal"><span class="pre">import_syscal_txt</span></code></a>(filename,&nbsp;**kwargs)</td>
+<td>Syscal import</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="reda.containers.ERT.Importers.import_bert">
 <code class="descname">import_bert</code><span class="sig-paren">(</span><em>filename</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Importers.import_bert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Importers.import_bert" title="Permalink to this definition">¶</a></dt>
-<dd><p>BERT .ohm file import
-Construct pandas data frame BERT’s unified data format (<a href="#id1"><span class="problematic" id="id2">*</span></a>.ohm).</p>
+<dd><p>BERT .ohm file importConstruct pandas data frame from BERT`s unified data format (.ohm).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -157,7 +231,7 @@ Construct pandas data frame BERT’s unified data format (<a href="#id1"><span c
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+257.gb835127.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote class="last">
 <div><p>The measurement data</p>
 </div></blockquote>
@@ -170,8 +244,7 @@ Construct pandas data frame BERT’s unified data format (<a href="#id1"><span c
 <dl class="method">
 <dt id="reda.containers.ERT.Importers.import_pygimli">
 <code class="descname">import_pygimli</code><span class="sig-paren">(</span><em>filename</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#Importers.import_pygimli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.Importers.import_pygimli" title="Permalink to this definition">¶</a></dt>
-<dd><p>BERT .ohm file import
-Construct pandas data frame BERT’s unified data format (<a href="#id3"><span class="problematic" id="id4">*</span></a>.ohm).</p>
+<dd><p>BERT .ohm file importConstruct pandas data frame from BERT`s unified data format (.ohm).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -186,7 +259,7 @@ Construct pandas data frame BERT’s unified data format (<a href="#id3"><span c
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+257.gb835127.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote class="last">
 <div><p>The measurement data</p>
 </div></blockquote>
@@ -237,11 +310,11 @@ according to the equation <span class="math">\(X_n = N - (X_a - 1)\)</span></p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+257.gb835127.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote>
 <div><p>Contains the measurement data</p>
 </div></blockquote>
-<p>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<p>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+257.gb835127.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote>
 <div><p>Contains electrode positions (None at the moment)</p>
 </div></blockquote>
@@ -267,7 +340,74 @@ return None</p>
 <em class="property">class </em><code class="descclassname">reda.containers.ERT.</code><code class="descname">ListHandler</code><span class="sig-paren">(</span><em>log_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#ListHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.ListHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">logging.Handler</span></code></p>
 <p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">name</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">acquire</span></code>()</td>
+<td>Acquire the I/O thread lock.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">addFilter</span></code>(filter)</td>
+<td>Add the specified filter to this handler.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">close</span></code>()</td>
+<td>Tidy up any resources used by the handler.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">createLock</span></code>()</td>
+<td>Acquire a thread lock for serializing access to the underlying I/O.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.ListHandler.emit" title="reda.containers.ERT.ListHandler.emit"><code class="xref py py-obj docutils literal"><span class="pre">emit</span></code></a>(record)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code>(record)</td>
+<td>Determine if a record is loggable by consulting all the filters.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">flush</span></code>()</td>
+<td>Ensure all logging output has been flushed.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">format</span></code>(record)</td>
+<td>Format the specified record.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_name</span></code>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">handle</span></code>(record)</td>
+<td>Conditionally emit the specified logging record.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">handleError</span></code>(record)</td>
+<td>Handle errors which occur during an emit() call.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">release</span></code>()</td>
+<td>Release the I/O thread lock.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">removeFilter</span></code>(filter)</td>
+<td>Remove the specified filter from this handler.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">setFormatter</span></code>(fmt)</td>
+<td>Set the formatter for this handler.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">setLevel</span></code>(level)</td>
+<td>Set the logging level of this handler.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">set_name</span></code>(name)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="reda.containers.ERT.ListHandler.emit">
 <code class="descname">emit</code><span class="sig-paren">(</span><em>record</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#ListHandler.emit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.ListHandler.emit" title="Permalink to this definition">¶</a></dt>
@@ -300,6 +440,23 @@ changes in the number of rows.</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>Set up logging facilities for the containers</p>
 <p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.LoggingClass.print_data_journal" title="reda.containers.ERT.LoggingClass.print_data_journal"><code class="xref py py-obj docutils literal"><span class="pre">print_data_journal</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.ERT.LoggingClass.print_log" title="reda.containers.ERT.LoggingClass.print_log"><code class="xref py py-obj docutils literal"><span class="pre">print_log</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.ERT.LoggingClass.setup_logger" title="reda.containers.ERT.LoggingClass.setup_logger"><code class="xref py py-obj docutils literal"><span class="pre">setup_logger</span></code></a>()</td>
+<td>Setup a logger</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="reda.containers.ERT.LoggingClass.print_data_journal">
 <code class="descname">print_data_journal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/ERT.html#LoggingClass.print_data_journal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.ERT.LoggingClass.print_data_journal" title="Permalink to this definition">¶</a></dt>
@@ -339,6 +496,20 @@ changes in the number of rows.</p>
 <p>This class provides wrappers for most of the importer functions, and is
 meant to be inherited by the data containers</p>
 <p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.sEIT.importers.import_eit160" title="reda.containers.sEIT.importers.import_eit160"><code class="xref py py-obj docutils literal"><span class="pre">import_eit160</span></code></a>(filename,&nbsp;configfile)</td>
+<td>EIT160 data import</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.sEIT.importers.import_eit40" title="reda.containers.sEIT.importers.import_eit40"><code class="xref py py-obj docutils literal"><span class="pre">import_eit40</span></code></a>(filename,&nbsp;configfile[,&nbsp;…])</td>
+<td>EIT40 data import</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="reda.containers.sEIT.importers.import_eit160">
 <code class="descname">import_eit160</code><span class="sig-paren">(</span><em>filename</em>, <em>configfile</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/sEIT.html#importers.import_eit160"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.sEIT.importers.import_eit160" title="Permalink to this definition">¶</a></dt>
@@ -358,6 +529,32 @@ meant to be inherited by the data containers</p>
 <em class="property">class </em><code class="descclassname">reda.containers.sEIT.</code><code class="descname">sEIT</code><span class="sig-paren">(</span><em>dataframe=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/sEIT.html#sEIT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.sEIT.sEIT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#reda.containers.sEIT.importers" title="reda.containers.sEIT.importers"><code class="xref py py-class docutils literal"><span class="pre">reda.containers.sEIT.importers</span></code></a></p>
 <p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.sEIT.sEIT.check_dataframe" title="reda.containers.sEIT.sEIT.check_dataframe"><code class="xref py py-obj docutils literal"><span class="pre">check_dataframe</span></code></a>(dataframe)</td>
+<td>Check the given dataframe for the required columns</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">import_eit160</span></code>(filename,&nbsp;configfile)</td>
+<td>EIT160 data import</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">import_eit40</span></code>(filename,&nbsp;configfile[,&nbsp;…])</td>
+<td>EIT40 data import</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.sEIT.sEIT.query" title="reda.containers.sEIT.sEIT.query"><code class="xref py py-obj docutils literal"><span class="pre">query</span></code></a>(query[,&nbsp;inplace])</td>
+<td>State what you want to keep</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#reda.containers.sEIT.sEIT.remove_frequencies" title="reda.containers.sEIT.sEIT.remove_frequencies"><code class="xref py py-obj docutils literal"><span class="pre">remove_frequencies</span></code></a>(fmin,&nbsp;fmax)</td>
+<td>Remove frequencies from the dataset</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#reda.containers.sEIT.sEIT.subquery" title="reda.containers.sEIT.sEIT.subquery"><code class="xref py py-obj docutils literal"><span class="pre">subquery</span></code></a>(subset,&nbsp;filter[,&nbsp;inplace])</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="reda.containers.sEIT.sEIT.check_dataframe">
 <code class="descname">check_dataframe</code><span class="sig-paren">(</span><em>dataframe</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/containers/sEIT.html#sEIT.check_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.containers.sEIT.sEIT.check_dataframe" title="Permalink to this definition">¶</a></dt>

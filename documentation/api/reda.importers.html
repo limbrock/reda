@@ -53,7 +53,7 @@ dc2dinvres.</p>
 <dl class="function">
 <dt id="reda.importers.bert.import_ohm">
 <code class="descclassname">reda.importers.bert.</code><code class="descname">import_ohm</code><span class="sig-paren">(</span><em>filename</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/bert.html#import_ohm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.bert.import_ohm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct pandas data frame BERT’s unified data format (<a href="#id1"><span class="problematic" id="id2">*</span></a>.ohm).</p>
+<dd><p>Construct pandas data frame from BERT`s unified data format (.ohm).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -68,7 +68,7 @@ dc2dinvres.</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+257.gb835127.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote class="last">
 <div><p>The measurement data</p>
 </div></blockquote>
@@ -99,13 +99,16 @@ EMD(n).Yg2 Admitance of second injection path
 EMD(n).As3 Voltages at shunt resistors (defined in .mcf files: NA1 - NA2)
 EMD(n).Zg3 Impedance between injection electrodes</div></blockquote>
 <p>Import pipeline:</p>
-<ul class="simple">
-<li>read single-potentials from .mat file</li>
-<li>read quadrupoles from separate file or provide numpy array</li>
-<li>compute mean of three impedance measurement repetitions (Z1-Z3) for each ABM</li>
-<li><dl class="first docutils">
-<dt>compute quadrupole impedance via superposition using</dt>
-<dd><ul class="first last">
+<ul>
+<li><p class="first">read single-potentials from .mat file</p>
+</li>
+<li><p class="first">read quadrupoles from separate file or provide numpy array</p>
+</li>
+<li><p class="first">compute mean of three impedance measurement repetitions (Z1-Z3) for each ABM</p>
+</li>
+<li><p class="first">compute quadrupole impedance via superposition using</p>
+<blockquote>
+<div><ul class="simple">
 <li><ol class="first loweralpha">
 <li>averaged Z-values</li>
 </ol>
@@ -115,16 +118,14 @@ EMD(n).Zg3 Impedance between injection electrodes</div></blockquote>
 </ol>
 </li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-</ul>
-<p>(I think we don’t need the next step because of np.arctan2)
-- check for correct quadrant in phase values, correct if necessary (is this</p>
-<blockquote>
-<div>required if we use the arctan2 function?)</div></blockquote>
-<ul class="simple">
-<li>compute variance/standard deviation from the repetition values</li>
+<li><p class="first">(I think we don’t need the next step because of np.arctan2)
+check for correct quadrant in phase values, correct if necessary (is this
+required if we use the arctan2 function?)</p>
+</li>
+<li><p class="first">compute variance/standard deviation from the repetition values</p>
+</li>
 </ul>
 <p>Open questions:</p>
 <ul class="simple">
@@ -178,13 +179,16 @@ EMD(n).Yg2 Admitance of second injection path
 EMD(n).As3 Voltages at shunt resistors (defined in .mcf files: NA1 - NA2)
 EMD(n).Zg3 Impedance between injection electrodes</div></blockquote>
 <p>Import pipeline:</p>
-<ul class="simple">
-<li>read single-potentials from .mat file</li>
-<li>read quadrupoles from separate file or provide numpy array</li>
-<li>compute mean of three impedance measurement repetitions (Z1-Z3) for each ABM</li>
-<li><dl class="first docutils">
-<dt>compute quadrupole impedance via superposition using</dt>
-<dd><ul class="first last">
+<ul>
+<li><p class="first">read single-potentials from .mat file</p>
+</li>
+<li><p class="first">read quadrupoles from separate file or provide numpy array</p>
+</li>
+<li><p class="first">compute mean of three impedance measurement repetitions (Z1-Z3) for each ABM</p>
+</li>
+<li><p class="first">compute quadrupole impedance via superposition using</p>
+<blockquote>
+<div><ul class="simple">
 <li><ol class="first loweralpha">
 <li>averaged Z-values</li>
 </ol>
@@ -194,15 +198,13 @@ EMD(n).Zg3 Impedance between injection electrodes</div></blockquote>
 </ol>
 </li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
-<p>(I think we don’t need the next step because of np.arctan2)
-- check for correct quadrant in phase values, correct if necessary (is this</p>
-<blockquote>
-<div>required if we use the arctan2 function?)</div></blockquote>
 <ul class="simple">
+<li>(I think we don’t need the next step because of np.arctan2)
+check for correct quadrant in phase values, correct if necessary (is this
+required if we use the arctan2 function?)</li>
 <li>compute variance/standard deviation from the repetition values</li>
 <li>should we provide a time delta between the two measurements?</li>
 </ul>
@@ -224,12 +226,30 @@ and Kemna, 2017, Biogeosciences, for detailed information.</p>
 <dl class="function">
 <dt id="reda.importers.geotom.add_file">
 <code class="descclassname">reda.importers.geotom.</code><code class="descname">add_file</code><span class="sig-paren">(</span><em>filename</em>, <em>settings</em>, <em>container=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/reda/importers/geotom.html#add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reda.importers.geotom.add_file" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>settings = {</dt>
-<dd>timestep: [int|datetime], timestep relating to this measurement</dd>
-</dl>
-<p>}
-container: ERT container to add dataset to</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename: string</strong></p>
+<blockquote>
+<div><p>path</p>
+</div></blockquote>
+<p><strong>settings: dict</strong></p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">timestep</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="o">|</span><span class="n">datetime</span><span class="p">],</span> <span class="n">timestep</span> <span class="n">relating</span> <span class="n">to</span> <span class="n">this</span> <span class="n">measurement</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>container: :class:`reda.container.ERT.ERT`</strong></p>
+<blockquote class="last">
+<div><p>ERT container to add dataset to</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -269,11 +289,11 @@ according to the equation <span class="math">\(X_n = N - (X_a - 1)\)</span></p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+257.gb835127.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote>
 <div><p>Contains the measurement data</p>
 </div></blockquote>
-<p>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+229.gd5a7e7c.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
+<p>electrodes: <a class="reference external" href="http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.23.0.dev0+257.gb835127.dirty)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a></p>
 <blockquote>
 <div><p>Contains electrode positions (None at the moment)</p>
 </div></blockquote>
@@ -314,21 +334,28 @@ return None</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename: input filename, usually with the ending “.RES”</strong></p>
-<p><strong>settings = {</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename: string</strong></p>
 <blockquote>
-<div><p>‘filter_skip’: (integer) skip dipoles we are interested in
-‘quadrupole_mode’: [‘after’|’between’|’before’| ‘all’]</p>
+<div><p>input filename, usually with the ending “.RES”</p>
+</div></blockquote>
+<p><strong>settings: dict</strong></p>
 <blockquote>
-<div><p>which dipoles to use from the file</p>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;filter_skip&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">integer</span><span class="p">)</span> <span class="n">skip</span> <span class="n">dipoles</span> <span class="n">we</span> <span class="n">are</span> <span class="n">interested</span> <span class="ow">in</span>
+    <span class="s1">&#39;quadrupole_mode&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;after&#39;</span><span class="o">|</span><span class="s1">&#39;between&#39;</span><span class="o">|</span><span class="s1">&#39;before&#39;</span><span class="o">|</span> <span class="s1">&#39;all&#39;</span><span class="p">]</span>
+                       <span class="n">which</span> <span class="n">dipoles</span> <span class="n">to</span> <span class="n">use</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">file</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div></blockquote>
-</div></blockquote>
-<p><strong>}</strong></p>
-<p><strong>selection_mode: which voltage dipoles should be returned. Possible choices:</strong></p>
+<p><strong>selection_mode: dict</strong></p>
 <blockquote class="last">
-<div><p>“all”
-“before”
-“after”</p>
+<div><p>which voltage dipoles should be returned. Possible choices:</p>
+<ul class="simple">
+<li>“all”</li>
+<li>“before”</li>
+<li>“after”</li>
+</ul>
 </div></blockquote>
 </td>
 </tr>

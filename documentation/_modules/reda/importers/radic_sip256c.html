@@ -398,23 +398,28 @@
 <span class="sd">    (Radic Research)</span>
 
 <span class="sd">    Parameters</span>
-<span class="sd">    ==========</span>
-<span class="sd">    filename: input filename, usually with the ending &quot;.RES&quot;</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: string</span>
+<span class="sd">        input filename, usually with the ending &quot;.RES&quot;</span>
 
-<span class="sd">    settings = {</span>
-<span class="sd">        &#39;filter_skip&#39;: (integer) skip dipoles we are interested in</span>
-<span class="sd">        &#39;quadrupole_mode&#39;: [&#39;after&#39;|&#39;between&#39;|&#39;before&#39;| &#39;all&#39;]</span>
-<span class="sd">                           which dipoles to use from the file</span>
-<span class="sd">    }</span>
+<span class="sd">    settings: dict</span>
+<span class="sd">        ::</span>
 
+<span class="sd">            settings = {</span>
+<span class="sd">                &#39;filter_skip&#39;: (integer) skip dipoles we are interested in</span>
+<span class="sd">                &#39;quadrupole_mode&#39;: [&#39;after&#39;|&#39;between&#39;|&#39;before&#39;| &#39;all&#39;]</span>
+<span class="sd">                                   which dipoles to use from the file</span>
+<span class="sd">            }</span>
 
-<span class="sd">    selection_mode: which voltage dipoles should be returned. Possible choices:</span>
-<span class="sd">        &quot;all&quot;</span>
-<span class="sd">        &quot;before&quot;</span>
-<span class="sd">        &quot;after&quot;</span>
+<span class="sd">    selection_mode: dict</span>
+<span class="sd">        which voltage dipoles should be returned. Possible choices:</span>
+
+<span class="sd">        * &quot;all&quot;</span>
+<span class="sd">        * &quot;before&quot;</span>
+<span class="sd">        * &quot;after&quot;</span>
 
 <span class="sd">    Returns</span>
-<span class="sd">    =======</span>
+<span class="sd">    -------</span>
 
 
 <span class="sd">    &quot;&quot;&quot;</span>

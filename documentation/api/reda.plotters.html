@@ -160,7 +160,16 @@ ignored’</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>spacing: float, optional</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>configs: :class:`numpy.ndarray`</strong></p>
+<blockquote>
+<div><p>Nx4 array containing the quadrupoles for different measurements</p>
+</div></blockquote>
+<p><strong>nr_electrodes: int</strong></p>
+<blockquote>
+<div><p>The overall number of electrodes of the dataset. This is used to plot
+the surface electrodes</p>
+</div></blockquote>
+<p><strong>spacing: float, optional</strong></p>
 <blockquote>
 <div><p>assumed distance between electrodes. Default=1</p>
 </div></blockquote>
@@ -187,7 +196,7 @@ each skip</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">figs: matplotlib.figure.Figure instance or list of Figure instances</p>
 <blockquote>
-<div><p>if only one type was plotted, then the figure instance is return.
+<div><p>if only one type was plotted, then the figure instance is returned.
 Otherwise, return a list of figure instances.</p>
 </div></blockquote>
 <p>axes: axes object or list of axes ojects</p>
@@ -199,27 +208,44 @@ Otherwise, return a list of figure instances.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Missing dependency on travis</span>
-<span class="c1"># import crtomo.configManager as CRconfig</span>
-<span class="c1"># config = CRconfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="c1"># config.gen_dipole_dipole(skipc=2)</span>
-<span class="c1"># fig, ax = config.plot_pseudodepths(</span>
-<span class="c1">#     spacing=0.3,</span>
-<span class="c1">#     ctypes=[&#39;dd&#39;, ],</span>
-<span class="c1"># )</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reda.plotters.plots2d</span> <span class="kn">import</span> <span class="n">plot_pseudodepths</span>
+<span class="c1"># define a few measurements</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">configs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+<span class="p">))</span>
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plot_pseudodepths</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">nr_electrodes</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">ctypes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dd&#39;</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../api/reda-plotters-2.py">Source code</a>)</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># import crtomo.configManager as CRconfig</span>
-<span class="c1"># config = CRconfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="c1"># config.gen_schlumberger(M=24, N=25)</span>
-<span class="c1"># fig, ax = config.plot_pseudodepths(</span>
-<span class="c1">#     spacing=1,</span>
-<span class="c1">#     ctypes=[&#39;schlumberger&#39;, ],</span>
-<span class="c1"># )</span>
+<p>(<a class="reference external" href="../api/reda-plotters-2.py">Source code</a>, <a class="reference external" href="../api/reda-plotters-2.png">png</a>, <a class="reference external" href="../api/reda-plotters-2.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="../_images/reda-plotters-2.png" src="../_images/reda-plotters-2.png" />
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reda.plotters.plots2d</span> <span class="kn">import</span> <span class="n">plot_pseudodepths</span>
+<span class="c1"># define a few measurements</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">configs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="p">))</span>
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plot_pseudodepths</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">nr_electrodes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">ctypes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;schlumberger&#39;</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../api/reda-plotters-3.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../api/reda-plotters-3.py">Source code</a>, <a class="reference external" href="../api/reda-plotters-3.png">png</a>, <a class="reference external" href="../api/reda-plotters-3.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="../_images/reda-plotters-3.png" src="../_images/reda-plotters-3.png" />
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -393,88 +419,85 @@ colored “red”</p>
 <div><p>axes object</p>
 </div></blockquote>
 <p>cb:</p>
-<blockquote>
+<blockquote class="last">
 <div><p>colorbar object</p>
 </div></blockquote>
-<p># Examples</p>
-<p># ——–</p>
-<p>#</p>
-<p># You can just supply a data vector to the plot function:</p>
-<p>#</p>
-<p># .. plot:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#     :include-source:</span>
-</pre></div>
-</div>
-<p>#</p>
-<p>#     # Missing dependency on travis</p>
-<p>#     # import numpy as np</p>
-<p>#     # import crtomo.configManager as CRConfig</p>
-<p>#     # configs = CRConfig.ConfigManager(nr_of_electrodes=48)</p>
-<p>#     # configs.gen_dipole_dipole(skipc=1, stepc=2)</p>
-<p>#     # measurements = np.random.random(configs.nr_of_configs)</p>
-<p>#     # configs.plot_pseudosection_type2(</p>
-<p>#     #     mid=measurements,</p>
-<p>#     # )</p>
-<p>#</p>
-<p># Generate a simple type 2 plot:</p>
-<p>#</p>
-<p># .. plot:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#     :include-source:</span>
-</pre></div>
-</div>
-<p>#</p>
-<p>#     # import numpy as np</p>
-<p>#     # import crtomo.configManager as CRConfig</p>
-<p>#     # configs = CRConfig.ConfigManager(nr_of_electrodes=48)</p>
-<p>#     # configs.gen_dipole_dipole(skipc=1, stepc=2)</p>
-<p>#     # measurements = np.random.random(configs.nr_of_configs)</p>
-<p>#     # mid = configs.add_measurements(measurements)</p>
-<p>#     # configs.plot_pseudosection_type2(</p>
-<p>#     #     mid,</p>
-<p>#     #     cblabel=’this label’,</p>
-<p>#     #     xlabel=’xlabel’,</p>
-<p>#     #     ylabel=’ylabel’,</p>
-<p>#     # )</p>
-<p>#</p>
-<p># You can also supply axes to plot to:</p>
-<p>#</p>
-<p># .. plot:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#     :include-source:</span>
-</pre></div>
-</div>
-<p>#</p>
-<p>#     import numpy as np</p>
-<p>#     from crtomo.mpl_setup import *</p>
-<p>#     import crtomo.configManager as CRConfig</p>
-<p>#</p>
-<p>#     configs = CRConfig.ConfigManager(nr_of_electrodes=48)</p>
-<p>#     configs.gen_dipole_dipole(skipc=1, stepc=2)</p>
-<p>#     K = configs.compute_K_factors(spacing=1)</p>
-<p>#     measurements = np.random.random(configs.nr_of_configs)</p>
-<p>#     mid = configs.add_measurements(measurements)</p>
-<p>#</p>
-<p>#     fig, axes = plt.subplots(1, 2)</p>
-<p>#</p>
-<p>#     configs.plot_pseudosection_type2(</p>
-<p>#         mid,</p>
-<p>#         ax=axes[0],</p>
-<p>#         cblabel=’this label’,</p>
-<p>#         xlabel=’xlabel’,</p>
-<p>#         ylabel=’ylabel’,</p>
-<p>#     )</p>
-<p>#     configs.plot_pseudosection_type2(</p>
-<p>#         K,</p>
-<p>#         ax=axes[1],</p>
-<p>#         cblabel=’K factor’,</p>
-<p>#         xlabel=’xlabel’,</p>
-<p>#         ylabel=’ylabel’,</p>
-<p>#     )</p>
-<p class="last">#     fig.tight_layout()</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
+<p>You can just supply a pandas.DataFrame to the plot function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">configs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+<span class="p">))</span>
+<span class="n">measurements</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">configs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurements&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">measurements</span>
+
+<span class="kn">from</span> <span class="nn">reda.plotters.pseudoplots</span> <span class="kn">import</span> <span class="n">plot_pseudosection_type2</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">cb</span> <span class="o">=</span> <span class="n">plot_pseudosection_type2</span><span class="p">(</span>
+   <span class="n">dataobj</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+   <span class="n">column</span><span class="o">=</span><span class="s1">&#39;measurements&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../api/reda-plotters-4.py">Source code</a>, <a class="reference external" href="../api/reda-plotters-4.png">png</a>, <a class="reference external" href="../api/reda-plotters-4.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="../_images/reda-plotters-4.png" src="../_images/reda-plotters-4.png" />
+</div>
+<p>You can also supply axes to plot to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">configs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+<span class="p">))</span>
+<span class="n">measurements</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">configs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">measurements2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">configs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurements&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">measurements</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurements2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">measurements2</span>
+
+<span class="kn">from</span> <span class="nn">reda.plotters.pseudoplots</span> <span class="kn">import</span> <span class="n">plot_pseudosection_type2</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plot_pseudosection_type2</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">column</span><span class="o">=</span><span class="s1">&#39;measurements&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">cblabel</span><span class="o">=</span><span class="s1">&#39;this label&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;xlabel&#39;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;ylabel&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plot_pseudosection_type2</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">column</span><span class="o">=</span><span class="s1">&#39;measurements2&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">cblabel</span><span class="o">=</span><span class="s1">&#39;measurement 2&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;xlabel&#39;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;ylabel&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../api/reda-plotters-5.py">Source code</a>, <a class="reference external" href="../api/reda-plotters-5.png">png</a>, <a class="reference external" href="../api/reda-plotters-5.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="../_images/reda-plotters-5.png" src="../_images/reda-plotters-5.png" />
+</div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reda.testing.containers</span> <span class="k">import</span> <span class="n">ERTContainer_nr</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">reda.plotters.pseudoplots</span> <span class="k">as</span> <span class="nn">ps</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">cb</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">plot_pseudosection_type2</span><span class="p">(</span><span class="n">ERTContainer_nr</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">)</span>

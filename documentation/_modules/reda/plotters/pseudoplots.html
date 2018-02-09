@@ -174,77 +174,77 @@
 <span class="sd">    cb:</span>
 <span class="sd">        colorbar object</span>
 
-<span class="sd">    # Examples</span>
-<span class="sd">    # --------</span>
-<span class="sd">    #</span>
-<span class="sd">    # You can just supply a data vector to the plot function:</span>
-<span class="sd">    #</span>
-<span class="sd">    # .. plot::</span>
-<span class="sd">    #     :include-source:</span>
-<span class="sd">    #</span>
-<span class="sd">    #     # Missing dependency on travis</span>
-<span class="sd">    #     # import numpy as np</span>
-<span class="sd">    #     # import crtomo.configManager as CRConfig</span>
-<span class="sd">    #     # configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="sd">    #     # configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
-<span class="sd">    #     # measurements = np.random.random(configs.nr_of_configs)</span>
-<span class="sd">    #     # configs.plot_pseudosection_type2(</span>
-<span class="sd">    #     #     mid=measurements,</span>
-<span class="sd">    #     # )</span>
-<span class="sd">    #</span>
-<span class="sd">    # Generate a simple type 2 plot:</span>
-<span class="sd">    #</span>
-<span class="sd">    # .. plot::</span>
-<span class="sd">    #     :include-source:</span>
-<span class="sd">    #</span>
-<span class="sd">    #     # import numpy as np</span>
-<span class="sd">    #     # import crtomo.configManager as CRConfig</span>
-<span class="sd">    #     # configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="sd">    #     # configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
-<span class="sd">    #     # measurements = np.random.random(configs.nr_of_configs)</span>
-<span class="sd">    #     # mid = configs.add_measurements(measurements)</span>
-<span class="sd">    #     # configs.plot_pseudosection_type2(</span>
-<span class="sd">    #     #     mid,</span>
-<span class="sd">    #     #     cblabel=&#39;this label&#39;,</span>
-<span class="sd">    #     #     xlabel=&#39;xlabel&#39;,</span>
-<span class="sd">    #     #     ylabel=&#39;ylabel&#39;,</span>
-<span class="sd">    #     # )</span>
-<span class="sd">    #</span>
-<span class="sd">    # You can also supply axes to plot to:</span>
-<span class="sd">    #</span>
-<span class="sd">    # .. plot::</span>
-<span class="sd">    #     :include-source:</span>
-<span class="sd">    #</span>
-<span class="sd">    #     import numpy as np</span>
-<span class="sd">    #     from crtomo.mpl_setup import *</span>
-<span class="sd">    #     import crtomo.configManager as CRConfig</span>
-<span class="sd">    #</span>
-<span class="sd">    #     configs = CRConfig.ConfigManager(nr_of_electrodes=48)</span>
-<span class="sd">    #     configs.gen_dipole_dipole(skipc=1, stepc=2)</span>
-<span class="sd">    #     K = configs.compute_K_factors(spacing=1)</span>
-<span class="sd">    #     measurements = np.random.random(configs.nr_of_configs)</span>
-<span class="sd">    #     mid = configs.add_measurements(measurements)</span>
-<span class="sd">    #</span>
-<span class="sd">    #     fig, axes = plt.subplots(1, 2)</span>
-<span class="sd">    #</span>
-<span class="sd">    #     configs.plot_pseudosection_type2(</span>
-<span class="sd">    #         mid,</span>
-<span class="sd">    #         ax=axes[0],</span>
-<span class="sd">    #         cblabel=&#39;this label&#39;,</span>
-<span class="sd">    #         xlabel=&#39;xlabel&#39;,</span>
-<span class="sd">    #         ylabel=&#39;ylabel&#39;,</span>
-<span class="sd">    #     )</span>
-<span class="sd">    #     configs.plot_pseudosection_type2(</span>
-<span class="sd">    #         K,</span>
-<span class="sd">    #         ax=axes[1],</span>
-<span class="sd">    #         cblabel=&#39;K factor&#39;,</span>
-<span class="sd">    #         xlabel=&#39;xlabel&#39;,</span>
-<span class="sd">    #         ylabel=&#39;ylabel&#39;,</span>
-<span class="sd">    #     )</span>
-<span class="sd">    #     fig.tight_layout()</span>
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+
+<span class="sd">    You can just supply a pandas.DataFrame to the plot function:</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source:</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        configs = np.array((</span>
+<span class="sd">            (1, 2, 4, 3),</span>
+<span class="sd">            (1, 2, 5, 4),</span>
+<span class="sd">            (1, 2, 6, 5),</span>
+<span class="sd">            (2, 3, 5, 4),</span>
+<span class="sd">            (2, 3, 6, 5),</span>
+<span class="sd">            (3, 4, 6, 5),</span>
+<span class="sd">        ))</span>
+<span class="sd">        measurements = np.random.random(configs.shape[0])</span>
+<span class="sd">        import pandas as pd</span>
+<span class="sd">        df = pd.DataFrame(configs, columns=[&#39;A&#39;, &#39;B&#39;, &#39;M&#39;, &#39;N&#39;])</span>
+<span class="sd">        df[&#39;measurements&#39;] = measurements</span>
+
+<span class="sd">        from reda.plotters.pseudoplots import plot_pseudosection_type2</span>
+<span class="sd">        fig, ax, cb = plot_pseudosection_type2(</span>
+<span class="sd">           dataobj=df,</span>
+<span class="sd">           column=&#39;measurements&#39;,</span>
+<span class="sd">        )</span>
+
+<span class="sd">    You can also supply axes to plot to:</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source:</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        configs = np.array((</span>
+<span class="sd">            (1, 2, 4, 3),</span>
+<span class="sd">            (1, 2, 5, 4),</span>
+<span class="sd">            (1, 2, 6, 5),</span>
+<span class="sd">            (2, 3, 5, 4),</span>
+<span class="sd">            (2, 3, 6, 5),</span>
+<span class="sd">            (3, 4, 6, 5),</span>
+<span class="sd">        ))</span>
+<span class="sd">        measurements = np.random.random(configs.shape[0])</span>
+<span class="sd">        measurements2 = np.random.random(configs.shape[0])</span>
+
+<span class="sd">        import pandas as pd</span>
+<span class="sd">        df = pd.DataFrame(configs, columns=[&#39;A&#39;, &#39;B&#39;, &#39;M&#39;, &#39;N&#39;])</span>
+<span class="sd">        df[&#39;measurements&#39;] = measurements</span>
+<span class="sd">        df[&#39;measurements2&#39;] = measurements2</span>
+
+<span class="sd">        from reda.plotters.pseudoplots import plot_pseudosection_type2</span>
+
+<span class="sd">        fig, axes = plt.subplots(1, 2)</span>
+
+<span class="sd">        plot_pseudosection_type2(</span>
+<span class="sd">            df,</span>
+<span class="sd">            column=&#39;measurements&#39;,</span>
+<span class="sd">            ax=axes[0],</span>
+<span class="sd">            cblabel=&#39;this label&#39;,</span>
+<span class="sd">            xlabel=&#39;xlabel&#39;,</span>
+<span class="sd">            ylabel=&#39;ylabel&#39;,</span>
+<span class="sd">        )</span>
+<span class="sd">        plot_pseudosection_type2(</span>
+<span class="sd">            df,</span>
+<span class="sd">            column=&#39;measurements2&#39;,</span>
+<span class="sd">            ax=axes[1],</span>
+<span class="sd">            cblabel=&#39;measurement 2&#39;,</span>
+<span class="sd">            xlabel=&#39;xlabel&#39;,</span>
+<span class="sd">            ylabel=&#39;ylabel&#39;,</span>
+<span class="sd">        )</span>
+<span class="sd">        fig.tight_layout()</span>
 
 <span class="sd">    &gt;&gt;&gt; from reda.testing.containers import ERTContainer_nr</span>
 <span class="sd">    &gt;&gt;&gt; import reda.plotters.pseudoplots as ps</span>
